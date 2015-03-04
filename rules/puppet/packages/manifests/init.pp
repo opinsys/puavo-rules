@@ -68,7 +68,6 @@ class packages {
     [ 'bash'
     , 'bridge-utils'
     , 'gdebi-core'
-    , 'grub-pc'
     , 'lvm2'
     , 'nfs-common'
     , 'openssh-client'
