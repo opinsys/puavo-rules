@@ -759,8 +759,7 @@ class packages {
     [ 'faenza-icon-theme' ]:
       tag => [ 'themes', 'puavo', ];
 
-    [ 'node-webkit'
-    , 'xul-ext-flashblock' ]:
+    [ 'node-webkit' ]:
       tag => [ 'web', 'puavo', ];
   }
 
