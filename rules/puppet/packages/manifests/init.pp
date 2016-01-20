@@ -800,7 +800,7 @@ class packages {
             with_dbg     => true,
             with_extra   => false;
 
-          [ '3.13.0-62-generic' ]:
+          [ '3.13.0-73-generic' ]:
             # $bcmwl_dkms_module and $nvidia_dkms_module do not compile
             # for this kernel (arch issue?)
             dkms_modules => [ $r8168_dkms_module ],
@@ -813,28 +813,13 @@ class packages {
           dkms_modules => $all_dkms_modules,
           package_tag  => 'puavo';
 
-        [ '3.16.0-52-generic', ]: # utopic backport from Ubuntu
+        [ '3.16.0-59-generic', ]: # utopic backport from Ubuntu
           dkms_modules => $all_dkms_modules;
 
-        [ '3.19.0-32-generic', ]: # vivid backport from Ubuntu
+        [ '3.19.0-47-generic', ]: # vivid backport from Ubuntu
           dkms_modules => $all_dkms_modules;
-      }
-    }
-    'utopic': {
-      packages::kernels::kernel_package {
-        '3.16.0-50-generic':
-          dkms_modules => $all_dkms_modules;
-      }
-    }
-    'vivid': {
-      packages::kernels::kernel_package {
-        '3.19.0-32-generic':
-          dkms_modules => $all_dkms_modules;
-      }
-    }
-    'wily': {
-      packages::kernels::kernel_package {
-        '4.1.0-3-generic':
+
+        [ '4.2.0-25-generic', ]: # wily backport from Ubuntu
           dkms_modules => $all_dkms_modules;
       }
     }

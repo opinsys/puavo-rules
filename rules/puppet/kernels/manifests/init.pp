@@ -34,9 +34,9 @@ class kernels {
   $default_kernel = $lsbdistcodename ? {
     'precise' => '3.2.0-69-generic',
     'trusty'  => '3.13.0-74.118-generic',
-    'utopic'  => '3.16.0-52-generic',
-    'vivid'   => '3.19.0-32-generic',
-    'wily'    => '4.1.0-3-generic',
+    'utopic'  => '3.16.0-59-generic',
+    'vivid'   => '3.19.0-47-generic',
+    'wily'    => '4.2.0-25-generic',
   }
 
   $hwgen2_kernel = $lsbdistcodename ? {
@@ -64,14 +64,19 @@ class kernels {
   }
 
   $utopic_kernel = $lsbdistcodename ? {
-                     'trusty' => '3.16.0-52-generic',
+                     'trusty' => '3.16.0-59-generic',
                      default  => $default_kernel,
                    }
 
   $vivid_kernel = $lsbdistcodename ? {
-                    'trusty' => '3.19.0-32-generic',
+                    'trusty' => '3.19.0-47-generic',
                     default  => $default_kernel,
                   }
+
+  $wily_kernel = $lsbdistcodename ? {
+                   'trusty' => '4.2.0-25-generic',
+                   default  => $default_kernel,
+                 }
 
   $edge_kernel = $lsbdistcodename ? {
     'trusty' => $architecture ? {
@@ -85,7 +90,7 @@ class kernels {
 
   $stable_amd64_kernel = $lsbdistcodename ? {
      'trusty' => $architecture ? {
-                   'i386'  => '3.13.0-62-generic',
+                   'i386'  => '3.13.0-73-generic',
                    default => $stable_kernel,
                  },
      default => $stable_kernel,
@@ -101,5 +106,6 @@ class kernels {
     'stable-amd64': kernel => $stable_amd64_kernel;
     'utopic':       kernel => $utopic_kernel;
     'vivid':        kernel => $vivid_kernel;
+    'wily':         kernel => $wily_kernel;
   }
 }
