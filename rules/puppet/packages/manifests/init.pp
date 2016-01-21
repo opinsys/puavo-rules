@@ -809,7 +809,7 @@ class packages {
       }
 
       packages::kernels::kernel_package {
-        [ '3.13.0-74.118-generic', ]:
+        [ '3.13.0-76.120-generic', ]:
           dkms_modules => $all_dkms_modules,
           package_tag  => 'puavo';
 

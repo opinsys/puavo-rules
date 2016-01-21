@@ -33,7 +33,7 @@ class kernels {
 
   $default_kernel = $lsbdistcodename ? {
     'precise' => '3.2.0-69-generic',
-    'trusty'  => '3.13.0-74.118-generic',
+    'trusty'  => '3.13.0-76.120-generic',
     'utopic'  => '3.16.0-59-generic',
     'vivid'   => '3.19.0-47-generic',
     'wily'    => '4.2.0-25-generic',
