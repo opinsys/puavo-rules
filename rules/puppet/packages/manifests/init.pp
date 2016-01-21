@@ -794,7 +794,7 @@ class packages {
             with_extra   => false;
 
 	  # the bcmwl-version does not compile for this kernel
-          [ '4.3.3.opinsys1' ]:
+          [ '4.3.3.opinsys2' ]:
             dkms_modules => [ $r8168_dkms_module, ],
             package_tag  => 'puavo',
             with_dbg     => true,
