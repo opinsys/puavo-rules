@@ -853,4 +853,14 @@ class packages {
     [ 'libudev0' ]: # spotify
       tag => [ 'puavo', 'required-by-restricted' ];
   }
+
+  # some basic packages for amd64-environment that other packages need
+  # but do not list as dependencies (because they presume that system
+  # could not function at all without these... but it does, because base
+  # system is i386).
+  @package {
+    # for 64-bit chrome
+    [ 'libexif12:amd64', 'libpulse0:amd64', 'libudev1:amd64' ]:
+      tag => [ 'basic', 'ubuntu', ];
+  }
 }
