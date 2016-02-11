@@ -6,7 +6,7 @@ class chrome {
 
   file {
     '/etc/apt/sources.list.d/google-chrome.list':
-      require => Package['google-chrome-stable'],
+      require => Package['google-chrome-stable:amd64'],
       source  => 'puppet:///modules/chrome/google-chrome.list';
 
     '/usr/bin/google-chrome-stable':
