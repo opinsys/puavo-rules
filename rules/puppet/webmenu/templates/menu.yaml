@@ -109,6 +109,7 @@ items:
     type: desktop
   - source: google-chrome
     type: desktop
+    onlyForArch: x86_64
   - source: thunderbird
     type: desktop
   - source: evolution
