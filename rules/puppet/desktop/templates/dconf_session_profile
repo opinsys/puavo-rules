@@ -68,7 +68,7 @@ monitor=0
 x-right=-1
 x-centered=false
 
-[org/gnome/gnome-panel/layout/objects/object-4]
+[org/gnome/gnome-panel/layout/objects/sep1]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=1
@@ -99,31 +99,31 @@ toplevel-id='bottom-panel'
 pack-index=2
 object-iid='WnckletFactory::ShowDesktopApplet'
 
-[org/gnome/gnome-panel/layout/objects/object-0]
+[org/gnome/gnome-panel/layout/objects/firefox]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=4
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-0/instance-config]
+[org/gnome/gnome-panel/layout/objects/firefox/instance-config]
 location='/usr/share/applications/firefox.desktop'
 
-[org/gnome/gnome-panel/layout/objects/object-7]
+[org/gnome/gnome-panel/layout/objects/chromium]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=5
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-7/instance-config]
+[org/gnome/gnome-panel/layout/objects/chromium/instance-config]
 location='/usr/share/applications/chromium-browser.desktop'
 
-[org/gnome/gnome-panel/layout/objects/object-8]
+[org/gnome/gnome-panel/layout/objects/chrome]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=6
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-8/instance-config]
+[org/gnome/gnome-panel/layout/objects/chrome/instance-config]
 location='/usr/share/applications/google-chrome.desktop'
 
 [org/gnome/gnome-panel/layout/objects/indicators]
@@ -132,47 +132,47 @@ toplevel-id='bottom-panel'
 pack-index=1
 object-iid='IndicatorAppletCompleteFactory::IndicatorAppletComplete'
 
-[org/gnome/gnome-panel/layout/objects/object-1]
+[org/gnome/gnome-panel/layout/objects/home]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=3
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-1/instance-config]
+[org/gnome/gnome-panel/layout/objects/home/instance-config]
 location='nautilus-home.desktop'
 
-[org/gnome/gnome-panel/layout/objects/object-2]
+[org/gnome/gnome-panel/layout/objects/sep2]
 pack-type='end'
 toplevel-id='bottom-panel'
 pack-index=3
 object-iid='PanelInternalFactory::Separator'
 
-[org/gnome/gnome-panel/layout/objects/object-3]
+[org/gnome/gnome-panel/layout/objects/webmenu]
 pack-type='start'
 toplevel-id='bottom-panel'
 pack-index=0
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-3/instance-config]
+[org/gnome/gnome-panel/layout/objects/webmenu/instance-config]
 location='webmenu-spawn.desktop'
 
-[org/gnome/gnome-panel/layout/objects/object-5]
+[org/gnome/gnome-panel/layout/objects/webmenulogout]
 pack-type='end'
 toplevel-id='bottom-panel'
 pack-index=0
 object-iid='PanelInternalFactory::Launcher'
 
-[org/gnome/gnome-panel/layout/objects/object-5/instance-config]
+[org/gnome/gnome-panel/layout/objects/webmenulogout/instance-config]
 location='webmenu-spawn-logout.desktop'
 
-[org/gnome/gnome-panel/layout/objects/object-6]
+[org/gnome/gnome-panel/layout/objects/notificationarea]
 pack-type='end'
 toplevel-id='bottom-panel'
 pack-index=2
 object-iid='NotificationAreaAppletFactory::NotificationArea'
 
 [org/gnome/gnome-panel/layout]
-object-id-list=['indicators', 'show-desktop', 'window-list', 'workspace-switcher', 'object-0', 'object-1', 'object-3', 'object-2', 'object-4', 'object-5', 'object-6', 'object-7', 'object-8']
+object-id-list=['chrome', 'chromium', 'firefox', 'home', 'indicators', 'notificationarea', 'sep1', 'sep2', 'show-desktop', 'webmenu', 'webmenulogout', 'window-list', 'workspace-switcher']
 toplevel-id-list=['bottom-panel']
 
 [org/gnome/gnome-panel/lockdown]
