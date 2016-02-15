@@ -3,31 +3,64 @@ class kernels {
           kernels::grub_update
   require packages
 
-  define kernel_link ($kernel, $linkname, $linksuffix) {
+  define kernel_link ($archsuffix, $kernel, $linkname, $linksuffix) {
     file {
       "/boot/${linkname}${linksuffix}":
         ensure  => link,
         require => Packages::Kernels::Kernel_package[$kernel],
-        target  => "${linkname}-${kernel}";
+        target  => "${linkname}-${kernel}${archsuffix}";
     }
 
     Packages::Kernels::Kernel_package <| title == $kernel |>
   }
 
-  define all_kernel_links ($kernel='') {
-    $subname = $title
+  define arch_kernel_links ($kernel, $subname, $arch='') {
+    $archsuffix       = $arch ? { '' => '',      default => "-$arch" }
+    $targetarchsuffix = $arch ? { '' => '-i386', default => "-$arch" }
 
-    $linksuffix = $subname ? { 'default' => '', default => "-$subname", }
+    $linksuffix = $subname ? {
+                    'default' => $archsuffix,
+                    default   => "-${subname}${archsuffix}",
+                  }
 
     kernel_link {
-      "initrd.img-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'initrd.img', linksuffix => $linksuffix;
+      "initrd.img-${kernel}-${subname}-${arch}":
+        archsuffix => $targetarchsuffix,
+        kernel     => $kernel,
+        linkname   => 'initrd.img',
+        linksuffix => $linksuffix;
 
-      "nbi.img-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'nbi.img', linksuffix => $linksuffix;
+      "nbi.img-${kernel}-${subname}-${arch}":
+        archsuffix => $targetarchsuffix,
+        kernel     => $kernel,
+        linkname   => 'nbi.img',
+        linksuffix => $linksuffix;
 
-      "vmlinuz-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'vmlinuz', linksuffix => $linksuffix;
+      "vmlinuz-${kernel}-${subname}-${arch}":
+        archsuffix => $targetarchsuffix,
+        kernel     => $kernel,
+        linkname   => 'vmlinuz',
+        linksuffix => $linksuffix;
+    }
+  }
+
+  define all_kernel_links ($kernel) {
+    $subname = $title
+
+    arch_kernel_links {
+      "${subname}-${kernel}":
+        kernel  => $kernel,
+        subname => $subname;
+
+      "${subname}-${kernel}-i386":
+        arch    => 'i386',
+        kernel  => $kernel,
+        subname => $subname;
+
+      "${subname}-${kernel}-amd64":
+        arch    => 'amd64',
+        kernel  => $kernel,
+        subname => $subname;
     }
   }
 
@@ -88,24 +121,15 @@ class kernels {
 
   $stable_kernel = $default_kernel
 
-  $stable_amd64_kernel = $lsbdistcodename ? {
-     'trusty' => $architecture ? {
-                   'i386'  => '3.13.0-73-generic',
-                   default => $stable_kernel,
-                 },
-     default => $stable_kernel,
-  }
-
   all_kernel_links {
-    'default':      kernel => $default_kernel;
-    'edge':         kernel => $edge_kernel;
-    'hwgen2':       kernel => $hwgen2_kernel;
-    'hwgen3':       kernel => $hwgen3_kernel;
-    'legacy':       kernel => $legacy_kernel;
-    'stable':       kernel => $stable_kernel;
-    'stable-amd64': kernel => $stable_amd64_kernel;
-    'utopic':       kernel => $utopic_kernel;
-    'vivid':        kernel => $vivid_kernel;
-    'wily':         kernel => $wily_kernel;
+    'default': kernel => $default_kernel;
+    'edge':    kernel => $edge_kernel;
+    'hwgen2':  kernel => $hwgen2_kernel;
+    'hwgen3':  kernel => $hwgen3_kernel;
+    'legacy':  kernel => $legacy_kernel;
+    'stable':  kernel => $stable_kernel;
+    'utopic':  kernel => $utopic_kernel;
+    'vivid':   kernel => $vivid_kernel;
+    'wily':    kernel => $wily_kernel;
   }
 }
