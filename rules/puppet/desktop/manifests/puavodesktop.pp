@@ -1,5 +1,6 @@
 class desktop::puavodesktop {
-  include desktop::dconf::desktopbackgroundlock,
+  include desktop::dconf::chrome_on_panel,
+          desktop::dconf::desktopbackgroundlock,
           desktop::dconf::disable_lidsuspend,
           desktop::dconf::disable_suspend,
           desktop::dconf::laptop,
