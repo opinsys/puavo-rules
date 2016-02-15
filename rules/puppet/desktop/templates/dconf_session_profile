@@ -117,15 +117,6 @@ object-iid='PanelInternalFactory::Launcher'
 [org/gnome/gnome-panel/layout/objects/chromium/instance-config]
 location='/usr/share/applications/chromium-browser.desktop'
 
-[org/gnome/gnome-panel/layout/objects/chrome]
-pack-type='start'
-toplevel-id='bottom-panel'
-pack-index=6
-object-iid='PanelInternalFactory::Launcher'
-
-[org/gnome/gnome-panel/layout/objects/chrome/instance-config]
-location='/usr/share/applications/google-chrome.desktop'
-
 [org/gnome/gnome-panel/layout/objects/indicators]
 pack-type='end'
 toplevel-id='bottom-panel'
