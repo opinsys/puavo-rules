@@ -1,33 +1,96 @@
 class kernels {
   include kernels::dkms,
-          kernels::grub_update
-  require packages
+          kernels::grub_update,
+          packages
 
-  define kernel_link ($kernel, $linkname, $linksuffix) {
+  define kernel_link ($archsuffix, $kernel, $linkname, $linksuffix) {
+    $kernelpkg = "linux-image-${kernel}"
+
+    $linktarget = $archsuffix ? {
+                    ''      => "${linkname}${linksuffix}-${architecture}",
+                    default => "${linkname}-${kernel}${archsuffix}",
+                  }
+
+    if $architecture == 'i386' {
+      if $archsuffix == '-i386' {
+        $default_arch_link = "/boot/${linkname}-${kernel}${archsuffix}"
+
+        # a hack to make a link:
+        # "${default_arch_link}" --> "${linkname}-${kernel}"
+        $exectitle = "default link for ${kernel} ${linkname} ${linksuffix} ${archsuffix}"
+        exec {
+          $exectitle:
+            command => "/bin/ln -fns ${linkname}-${kernel} ${default_arch_link}",
+            onlyif  => "/usr/bin/test \"$(/bin/readlink ${default_arch_link})\" != \"${linkname}-${kernel}\"",
+            require => Package[$kernelpkg];
+        }
+
+        $required = Exec[$exectitle]
+      } elsif $archsuffix == '-amd64' {
+        $required = File["/boot/${linktarget}"]
+      } else {
+        $required = Package[$kernelpkg]
+      }
+    } else {
+      $required = Package[$kernelpkg]
+    }
+
     file {
       "/boot/${linkname}${linksuffix}":
         ensure  => link,
-        require => Packages::Kernels::Kernel_package[$kernel],
-        target  => "${linkname}-${kernel}";
+        require => $required,
+        target  => $linktarget;
     }
 
-    Packages::Kernels::Kernel_package <| title == $kernel |>
+    Package <| title == $kernelpkg |>
   }
 
-  define all_kernel_links ($kernel='') {
-    $subname = $title
+  define arch_kernel_links ($kernel, $subname, $arch='') {
+    $archsuffix = $arch ? { '' => '', default => "-$arch" }
 
-    $linksuffix = $subname ? { 'default' => '', default => "-$subname", }
+    $linksuffix = $subname ? {
+                    'default' => $archsuffix,
+                    default   => "-${subname}${archsuffix}",
+                  }
 
     kernel_link {
-      "initrd.img-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'initrd.img', linksuffix => $linksuffix;
+      "initrd.img-${kernel}-${subname}-${arch}":
+        archsuffix => $archsuffix,
+        kernel     => $kernel,
+        linkname   => 'initrd.img',
+        linksuffix => $linksuffix;
 
-      "nbi.img-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'nbi.img', linksuffix => $linksuffix;
+      "nbi.img-${kernel}-${subname}-${arch}":
+        archsuffix => $archsuffix,
+        kernel     => $kernel,
+        linkname   => 'nbi.img',
+        linksuffix => $linksuffix;
 
-      "vmlinuz-${kernel}-${subname}":
-        kernel => $kernel, linkname => 'vmlinuz', linksuffix => $linksuffix;
+      "vmlinuz-${kernel}-${subname}-${arch}":
+        archsuffix => $archsuffix,
+        kernel     => $kernel,
+        linkname   => 'vmlinuz',
+        linksuffix => $linksuffix;
+    }
+  }
+
+  define all_kernel_links ($kernel) {
+    $subname = $title
+
+    arch_kernel_links {
+      "${subname}-${kernel}":
+        kernel  => $kernel,
+        subname => $subname;
+
+      "${subname}-${kernel}-i386":
+        arch    => 'i386',
+        kernel  => $kernel,
+        subname => $subname;
+
+      "${subname}-${kernel}-amd64":
+        arch    => 'amd64',
+        kernel  => $kernel,
+        subname => $subname;
     }
   }
 
