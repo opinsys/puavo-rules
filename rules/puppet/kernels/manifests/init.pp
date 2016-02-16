@@ -4,19 +4,34 @@ class kernels {
   require packages
 
   define kernel_link ($archsuffix, $kernel, $linkname, $linksuffix) {
+    $linktarget = $archsuffix ? {
+                    ''      => "${linkname}${linksuffix}-i386",
+                    default => "${linkname}-${kernel}${archsuffix}",
+                  }
+
     file {
       "/boot/${linkname}${linksuffix}":
         ensure  => link,
         require => Packages::Kernels::Kernel_package[$kernel],
-        target  => "${linkname}-${kernel}${archsuffix}";
+        target  => $linktarget;
+    }
+
+    $default_arch_link = "/boot/${linkname}-${kernel}-i386"
+
+    # a hack to make a link:
+    # "${default_arch_link}" --> "${linkname}-${kernel}"
+    exec {
+      "default link for ${kernel} ${linkname} ${linksuffix} ${archsuffix}":
+        command => "/bin/ln -fns ${linkname}-${kernel} ${default_arch_link}",
+        creates => $default_arch_link,
+        require => Packages::Kernels::Kernel_package[$kernel];
     }
 
     Packages::Kernels::Kernel_package <| title == $kernel |>
   }
 
   define arch_kernel_links ($kernel, $subname, $arch='') {
-    $archsuffix       = $arch ? { '' => '',      default => "-$arch" }
-    $targetarchsuffix = $arch ? { '' => '-i386', default => "-$arch" }
+    $archsuffix = $arch ? { '' => '', default => "-$arch" }
 
     $linksuffix = $subname ? {
                     'default' => $archsuffix,
@@ -25,19 +40,19 @@ class kernels {
 
     kernel_link {
       "initrd.img-${kernel}-${subname}-${arch}":
-        archsuffix => $targetarchsuffix,
+        archsuffix => $archsuffix,
         kernel     => $kernel,
         linkname   => 'initrd.img',
         linksuffix => $linksuffix;
 
       "nbi.img-${kernel}-${subname}-${arch}":
-        archsuffix => $targetarchsuffix,
+        archsuffix => $archsuffix,
         kernel     => $kernel,
         linkname   => 'nbi.img',
         linksuffix => $linksuffix;
 
       "vmlinuz-${kernel}-${subname}-${arch}":
-        archsuffix => $targetarchsuffix,
+        archsuffix => $archsuffix,
         kernel     => $kernel,
         linkname   => 'vmlinuz',
         linksuffix => $linksuffix;
