@@ -88,24 +88,15 @@ class kernels {
 
   $stable_kernel = $default_kernel
 
-  $stable_amd64_kernel = $lsbdistcodename ? {
-     'trusty' => $architecture ? {
-                   'i386'  => '3.13.0-73-generic',
-                   default => $stable_kernel,
-                 },
-     default => $stable_kernel,
-  }
-
   all_kernel_links {
-    'default':      kernel => $default_kernel;
-    'edge':         kernel => $edge_kernel;
-    'hwgen2':       kernel => $hwgen2_kernel;
-    'hwgen3':       kernel => $hwgen3_kernel;
-    'legacy':       kernel => $legacy_kernel;
-    'stable':       kernel => $stable_kernel;
-    'stable-amd64': kernel => $stable_amd64_kernel;
-    'utopic':       kernel => $utopic_kernel;
-    'vivid':        kernel => $vivid_kernel;
-    'wily':         kernel => $wily_kernel;
+    'default': kernel => $default_kernel;
+    'edge':    kernel => $edge_kernel;
+    'hwgen2':  kernel => $hwgen2_kernel;
+    'hwgen3':  kernel => $hwgen3_kernel;
+    'legacy':  kernel => $legacy_kernel;
+    'stable':  kernel => $stable_kernel;
+    'utopic':  kernel => $utopic_kernel;
+    'vivid':   kernel => $vivid_kernel;
+    'wily':    kernel => $wily_kernel;
   }
 }

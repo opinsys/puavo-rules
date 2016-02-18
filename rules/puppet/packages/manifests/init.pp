@@ -799,12 +799,6 @@ class packages {
             package_tag  => 'puavo',
             with_dbg     => true,
             with_extra   => false;
-
-          [ '3.13.0-73-generic' ]:
-            # $bcmwl_dkms_module and $nvidia_dkms_module do not compile
-            # for this kernel (arch issue?)
-            dkms_modules => [ $r8168_dkms_module ],
-            pkgarch      => 'amd64';
         }
       }
 
