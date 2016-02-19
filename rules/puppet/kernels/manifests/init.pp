@@ -1,7 +1,7 @@
 class kernels {
   include kernels::dkms,
           kernels::grub_update,
-          packages
+          packages::kernels
 
   define kernel_link ($archsuffix, $kernel, $linkname, $linksuffix) {
     $kernelpkg = "linux-image-${kernel}"
@@ -94,72 +94,88 @@ class kernels {
     }
   }
 
-  $default_kernel = $lsbdistcodename ? {
-    'precise' => '3.2.0-69-generic',
-    'trusty'  => '3.13.0-78-generic',
-    'utopic'  => '3.16.0-61-generic',
-    'vivid'   => '3.19.0-50-generic',
-    'wily'    => '4.2.0-29-generic',
+  case $lsbdistcodename {
+    'precise': {
+      $precise_kernel = '3.2.0-69-generic'
+
+      $default_kernel = $precise_kernel
+    }
+    'trusty': {
+      $precise_kernel = '3.2.0-70-generic-pae'
+      $trusty_kernel  = '3.13.0-78-generic'
+      $utopic_kernel  = '3.16.0-61-generic'
+      $vivid_kernel   = '3.19.0-50-generic'
+      $wily_kernel    = '4.2.0-29-generic'
+      $hwgen2_kernel  = '4.0.9.opinsys2'
+      $hwgen3_kernel  = '4.2.8.opinsys2'
+      $edge_kernel    = '4.3.3.opinsys2'
+
+      $default_kernel = $trusty_kernel
+
+      all_kernel_links {
+        'edge':   kernel => $edge_kernel;
+        'hwgen2': kernel => $hwgen2_kernel;
+        'hwgen3': kernel => $hwgen3_kernel;
+        'legacy': kernel => $precise_kernel;
+        'stable': kernel => $trusty_kernel;
+        'utopic': kernel => $utopic_kernel;
+        'vivid':  kernel => $vivid_kernel;
+        'wily':   kernel => $wily_kernel;
+      }
+    }
   }
-
-  $hwgen2_kernel = $lsbdistcodename ? {
-    'trusty' => $architecture ? {
-                  'i386'  => '4.0.9.opinsys2',
-                  default => $default_kernel,
-                },
-    default => $default_kernel,
-  }
-
-  $hwgen3_kernel = $lsbdistcodename ? {
-    'trusty' => $architecture ? {
-                  'i386'  => '4.2.8.opinsys2',
-                  default => $default_kernel,
-                },
-    default => $default_kernel,
-  }
-
-  $legacy_kernel = $lsbdistcodename ? {
-    'trusty' => $architecture ? {
-                  'i386'  => '3.2.0-70-generic-pae',
-                  default => $default_kernel,
-                },
-    default => $default_kernel,
-  }
-
-  $utopic_kernel = $lsbdistcodename ? {
-                     'trusty' => '3.16.0-61-generic',
-                     default  => $default_kernel,
-                   }
-
-  $vivid_kernel = $lsbdistcodename ? {
-                    'trusty' => '3.19.0-50-generic',
-                    default  => $default_kernel,
-                  }
-
-  $wily_kernel = $lsbdistcodename ? {
-                   'trusty' => '4.2.0-29-generic',
-                   default  => $default_kernel,
-                 }
-
-  $edge_kernel = $lsbdistcodename ? {
-    'trusty' => $architecture ? {
-                  'i386'  => '4.3.3.opinsys2',
-                  default => $default_kernel,
-                },
-    default => $default_kernel,
-  }
-
-  $stable_kernel = $default_kernel
 
   all_kernel_links {
     'default': kernel => $default_kernel;
-    'edge':    kernel => $edge_kernel;
-    'hwgen2':  kernel => $hwgen2_kernel;
-    'hwgen3':  kernel => $hwgen3_kernel;
-    'legacy':  kernel => $legacy_kernel;
-    'stable':  kernel => $stable_kernel;
-    'utopic':  kernel => $utopic_kernel;
-    'vivid':   kernel => $vivid_kernel;
-    'wily':    kernel => $wily_kernel;
+  }
+
+  #
+  # kernel packages and modules
+  #
+
+  $bcmwl_dkms_module  = 'bcmwl/6.30.223.248+bdcom'
+  $nvidia_dkms_module = 'nvidia-304/304.131'
+  $r8168_dkms_module  = 'r8168/8.040.00'
+  $all_dkms_modules   = [ $bcmwl_dkms_module
+                        , $nvidia_dkms_module
+                        , $r8168_dkms_module ]
+
+  Packages::Kernels::Kernel_package {
+    dkms_modules => $all_dkms_modules,
+  }
+
+  case $lsbdistcodename {
+    'precise': {
+      packages::kernels::kernel_package {
+        $precise_kernel:
+          package_tag => 'puavo',
+          with_extra  => false;
+      }
+    }
+    'trusty': {
+      packages::kernels::kernel_package {
+        $precise_kernel:
+          package_tag => 'puavo',
+          with_extra  => false;
+
+        $trusty_kernel:
+          package_tag => 'puavo';
+
+        [ $utopic_kernel, $vivid_kernel, $wily_kernel ]:
+          ;
+
+        [ $hwgen2_kernel, $hwgen3_kernel ]:
+          package_tag => 'puavo',
+          with_dbg    => true,
+          with_extra  => false;
+
+        # the bcmwl-version does not compile for this kernel
+        $edge_kernel:
+          dkms_modules => [ $r8168_dkms_module, ],
+          package_tag  => 'puavo',
+          with_dbg     => true,
+          with_extra   => false;
+      }
+    }
   }
 }

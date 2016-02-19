@@ -2,16 +2,6 @@ class packages::kernels {
   include kernels::dkms,
           packages
 
-  if $architecture == 'i386' {
-    $foreign_arch = 'amd64'
-
-    file {
-      [ "/lib/modules-${foreign_arch}"
-      , "/usr/lib/debug/lib/modules-${foreign_arch}" ]:
-        ensure => directory;
-    }
-  }
-
   define foreign_arch_files ($foreign_arch,
                              $foreign_arch_basedir,
                              $kernel_version,
@@ -121,6 +111,16 @@ class packages::kernels {
           foreign_arch         => 'amd64',
           foreign_arch_basedir => '/mnt/amd64';
       }
+    }
+  }
+
+  if $architecture == 'i386' {
+    $foreign_arch = 'amd64'
+
+    file {
+      [ "/lib/modules-${foreign_arch}"
+      , "/usr/lib/debug/lib/modules-${foreign_arch}" ]:
+        ensure => directory;
     }
   }
 }

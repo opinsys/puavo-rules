@@ -4,8 +4,7 @@ class packages {
           opinsys_apt_repositories,
           packages::proposed_updates
 
-  include packages::kernels,
-	  packages::purged
+  include packages::purged
 
   # install packages by default
   Package { ensure => present, }
@@ -761,62 +760,6 @@ class packages {
 
     [ 'node-webkit' ]:
       tag => [ 'web', 'puavo', ];
-  }
-
-  $bcmwl_dkms_module  = 'bcmwl/6.30.223.248+bdcom'
-  $nvidia_dkms_module = 'nvidia-304/304.131'
-  $r8168_dkms_module  = 'r8168/8.040.00'
-  $all_dkms_modules   = [ $bcmwl_dkms_module
-                        , $nvidia_dkms_module
-                        , $r8168_dkms_module ]
-
-  case $lsbdistcodename {
-    'precise': {
-      packages::kernels::kernel_package {
-        '3.2.0-69-generic':
-          dkms_modules => $all_dkms_modules,
-          package_tag  => 'puavo',
-          with_extra   => false;
-      }
-    }
-    'trusty': {
-      if $architecture == 'i386' {
-        packages::kernels::kernel_package {
-          [ '3.2.0-70-generic-pae' ]:
-            dkms_modules => $all_dkms_modules,
-            package_tag  => 'puavo',
-            with_extra   => false;
-
-          [ '4.0.9.opinsys2', '4.2.8.opinsys2', ]:
-            dkms_modules => $all_dkms_modules,
-            package_tag  => 'puavo',
-            with_dbg     => true,
-            with_extra   => false;
-
-	  # the bcmwl-version does not compile for this kernel
-          [ '4.3.3.opinsys2' ]:
-            dkms_modules => [ $r8168_dkms_module, ],
-            package_tag  => 'puavo',
-            with_dbg     => true,
-            with_extra   => false;
-        }
-      }
-
-      packages::kernels::kernel_package {
-        [ '3.13.0-78-generic', ]:
-          dkms_modules => $all_dkms_modules,
-          package_tag  => 'puavo';
-
-        [ '3.16.0-61-generic' ]: # utopic backport from Ubuntu
-          dkms_modules => $all_dkms_modules;
-
-        [ '3.19.0-50-generic', ]: # vivid backport from Ubuntu
-          dkms_modules => $all_dkms_modules;
-
-        [ '4.2.0-29-generic', ]: # wily backport from Ubuntu
-,          dkms_modules => $all_dkms_modules;
-      }
-    }
   }
 
   #
