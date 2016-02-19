@@ -96,10 +96,10 @@ class kernels {
 
   $default_kernel = $lsbdistcodename ? {
     'precise' => '3.2.0-69-generic',
-    'trusty'  => '3.13.0-76.120-generic',
-    'utopic'  => '3.16.0-59-generic',
-    'vivid'   => '3.19.0-47-generic',
-    'wily'    => '4.2.0-25-generic',
+    'trusty'  => '3.13.0-78-generic',
+    'utopic'  => '3.16.0-61-generic',
+    'vivid'   => '3.19.0-50-generic',
+    'wily'    => '4.2.0-29-generic',
   }
 
   $hwgen2_kernel = $lsbdistcodename ? {
@@ -127,17 +127,17 @@ class kernels {
   }
 
   $utopic_kernel = $lsbdistcodename ? {
-                     'trusty' => '3.16.0-59-generic',
+                     'trusty' => '3.16.0-61-generic',
                      default  => $default_kernel,
                    }
 
   $vivid_kernel = $lsbdistcodename ? {
-                    'trusty' => '3.19.0-47-generic',
+                    'trusty' => '3.19.0-50-generic',
                     default  => $default_kernel,
                   }
 
   $wily_kernel = $lsbdistcodename ? {
-                   'trusty' => '4.2.0-25-generic',
+                   'trusty' => '4.2.0-29-generic',
                    default  => $default_kernel,
                  }
 

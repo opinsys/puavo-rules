@@ -803,18 +803,18 @@ class packages {
       }
 
       packages::kernels::kernel_package {
-        [ '3.13.0-76.120-generic', ]:
+        [ '3.13.0-78-generic', ]:
           dkms_modules => $all_dkms_modules,
           package_tag  => 'puavo';
 
-        [ '3.16.0-59-generic', ]: # utopic backport from Ubuntu
+        [ '3.16.0-61-generic' ]: # utopic backport from Ubuntu
           dkms_modules => $all_dkms_modules;
 
-        [ '3.19.0-47-generic', ]: # vivid backport from Ubuntu
+        [ '3.19.0-50-generic', ]: # vivid backport from Ubuntu
           dkms_modules => $all_dkms_modules;
 
-        [ '4.2.0-25-generic', ]: # wily backport from Ubuntu
-          dkms_modules => $all_dkms_modules;
+        [ '4.2.0-29-generic', ]: # wily backport from Ubuntu
+,          dkms_modules => $all_dkms_modules;
       }
     }
   }
