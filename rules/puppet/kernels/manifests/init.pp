@@ -11,26 +11,22 @@ class kernels {
                     default => "${linkname}-${kernel}${archsuffix}",
                   }
 
-    if $architecture == 'i386' {
-      if $archsuffix == '-i386' {
-        $default_arch_link = "/boot/${linkname}-${kernel}${archsuffix}"
+    if $archsuffix == "-${architecture}" {
+      $default_arch_link = "/boot/${linkname}-${kernel}${archsuffix}"
 
-        # a hack to make a link:
-        # "${default_arch_link}" --> "${linkname}-${kernel}"
-        $exectitle = "default link for ${kernel} ${linkname} ${linksuffix} ${archsuffix}"
-        exec {
-          $exectitle:
-            command => "/bin/ln -fns ${linkname}-${kernel} ${default_arch_link}",
-            onlyif  => "/usr/bin/test \"$(/bin/readlink ${default_arch_link})\" != \"${linkname}-${kernel}\"",
-            require => Package[$kernelpkg];
-        }
-
-        $required = Exec[$exectitle]
-      } elsif $archsuffix == '-amd64' {
-        $required = File["/boot/${linktarget}"]
-      } else {
-        $required = Package[$kernelpkg]
+      # a hack to make a link:
+      # "${default_arch_link}" --> "${linkname}-${kernel}"
+      $exectitle = "default link for ${kernel} ${linkname} ${linksuffix} ${archsuffix}"
+      exec {
+        $exectitle:
+          command => "/bin/ln -fns ${linkname}-${kernel} ${default_arch_link}",
+          onlyif  => "/usr/bin/test \"$(/bin/readlink ${default_arch_link})\" != \"${linkname}-${kernel}\"",
+          require => Package[$kernelpkg];
       }
+
+      $required = Exec[$exectitle]
+    } elsif $archsuffix != '' {
+      $required = File["/boot/${linktarget}"]
     } else {
       $required = Package[$kernelpkg]
     }
@@ -77,13 +73,17 @@ class kernels {
   define all_kernel_links ($kernel) {
     $subname = $title
 
+    if $architecture == 'i386' {
+      arch_kernel_links {
+        "${subname}-${kernel}-i386":
+          arch    => 'i386',
+          kernel  => $kernel,
+          subname => $subname;
+      }
+    }
+
     arch_kernel_links {
       "${subname}-${kernel}":
-        kernel  => $kernel,
-        subname => $subname;
-
-      "${subname}-${kernel}-i386":
-        arch    => 'i386',
         kernel  => $kernel,
         subname => $subname;
 
