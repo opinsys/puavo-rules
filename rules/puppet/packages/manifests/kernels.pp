@@ -4,35 +4,59 @@ class packages::kernels {
 
   define foreign_arch_files ($foreign_arch,
                              $foreign_arch_basedir,
-                             $kernel_version) {
+                             $kernel_version,
+                             $filetype='file') {
     $titlearray = split($title, ' ')
     $fileprefix = $titlearray[0]
 
-    file {
-      "/${fileprefix}${kernel_version}-${foreign_arch}":
-        source => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
+    $targetfilepath = "/${fileprefix}${kernel_version}-${foreign_arch}"
+
+    if $filetype == 'file' {
+      file {
+        $targetfilepath:
+          source => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
+      }
+    } elsif $filetype == 'directory' {
+      file {
+        $targetfilepath:
+          ensure  => directory,
+          force   => true,
+          purge   => true,
+          recurse => true,
+          source  => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
+      }
     }
   }
 
   define foreign_arch_kernel_files ($foreign_arch, $foreign_arch_basedir) {
     $kernel_version = $title
 
+    $dirprefixlist = [ 'lib/modules/'
+                     , 'usr/lib/debug/lib/modules/' ]
+
     $fileprefixlist = [ 'boot/abi-'
                       , 'boot/config-'
                       , 'boot/initrd.img-'
                       , 'boot/nbi.img-'
                       , 'boot/System.map-'
-                      , 'boot/vmlinuz-'
-                      , 'lib/modules/'
-                      , 'usr/lib/debug/lib/modules/' ]
+                      , 'boot/vmlinuz-' ]
 
     # Clunky tricks to retain compatibility the Puppet version (2.7.11)
     # in Precise, newer puppet versions could use iterations.
+    $foreign_arch_dirs = regsubst($dirprefixlist,
+                                  '$',
+                                  " for ${kernel_version}")
     $foreign_arch_files = regsubst($fileprefixlist,
                                    '$',
                                    " for ${kernel_version}")
 
     foreign_arch_files {
+      $foreign_arch_dirs:
+        filetype             => 'directory',
+        foreign_arch         => $foreign_arch,
+        foreign_arch_basedir => $foreign_arch_basedir,
+        kernel_version       => $kernel_version;
+
       $foreign_arch_files:
         foreign_arch         => $foreign_arch,
         foreign_arch_basedir => $foreign_arch_basedir,
