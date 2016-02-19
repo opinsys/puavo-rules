@@ -2,6 +2,16 @@ class packages::kernels {
   include kernels::dkms,
           packages
 
+  if $architecture == 'i386' {
+    $foreign_arch = 'amd64'
+
+    file {
+      [ "/lib/modules-${foreign_arch}"
+      , "/usr/lib/debug/lib/modules-${foreign_arch}" ]:
+        ensure => directory;
+    }
+  }
+
   define foreign_arch_files ($foreign_arch,
                              $foreign_arch_basedir,
                              $kernel_version,
@@ -9,21 +19,19 @@ class packages::kernels {
     $titlearray = split($title, ' ')
     $fileprefix = $titlearray[0]
 
-    $targetfilepath = "/${fileprefix}${kernel_version}-${foreign_arch}"
-
     if $filetype == 'file' {
       file {
-        $targetfilepath:
+        "/${fileprefix}${kernel_version}-${foreign_arch}":
           source => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
       }
     } elsif $filetype == 'directory' {
       file {
-        $targetfilepath:
+        "/${fileprefix}-${foreign_arch}/${kernel_version}":
           ensure  => directory,
           force   => true,
           purge   => true,
           recurse => true,
-          source  => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
+          source  => "${foreign_arch_basedir}/${fileprefix}/${kernel_version}";
       }
     }
   }
@@ -31,8 +39,8 @@ class packages::kernels {
   define foreign_arch_kernel_files ($foreign_arch, $foreign_arch_basedir) {
     $kernel_version = $title
 
-    $dirprefixlist = [ 'lib/modules/'
-                     , 'usr/lib/debug/lib/modules/' ]
+    $dirprefixlist = [ 'lib/modules'
+                     , 'usr/lib/debug/lib/modules' ]
 
     $fileprefixlist = [ 'boot/abi-'
                       , 'boot/config-'
