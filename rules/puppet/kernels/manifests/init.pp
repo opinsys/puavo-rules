@@ -104,7 +104,7 @@ class kernels {
 
   $hwgen2_kernel = $lsbdistcodename ? {
     'trusty' => $architecture ? {
-                  'i386'  => '4.0.9.opinsys1',
+                  'i386'  => '4.0.9.opinsys2',
                   default => $default_kernel,
                 },
     default => $default_kernel,
@@ -112,7 +112,7 @@ class kernels {
 
   $hwgen3_kernel = $lsbdistcodename ? {
     'trusty' => $architecture ? {
-                  'i386'  => '4.2.8.opinsys1',
+                  'i386'  => '4.2.8.opinsys2',
                   default => $default_kernel,
                 },
     default => $default_kernel,

@@ -787,7 +787,7 @@ class packages {
             package_tag  => 'puavo',
             with_extra   => false;
 
-          [ '4.0.9.opinsys1', '4.2.8.opinsys1', ]:
+          [ '4.0.9.opinsys2', '4.2.8.opinsys2', ]:
             dkms_modules => $all_dkms_modules,
             package_tag  => 'puavo',
             with_dbg     => true,
