@@ -37,6 +37,7 @@ class packages {
     , 'pv'
     , 'pwgen'
     , 'pwman3'
+    , 'rsync'
     , 'screen'
     , 'setserial'
     , 'strace'

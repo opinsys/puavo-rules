@@ -15,14 +15,17 @@ class packages::kernels {
           source => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
       }
     } elsif $filetype == 'directory' {
-      file {
-        "/${fileprefix}-${foreign_arch}/${kernel_version}":
-          ensure  => directory,
-          force   => true,
-          purge   => true,
-          recurse => true,
-          source  => "${foreign_arch_basedir}/${fileprefix}/${kernel_version}";
+      # use exec/rsync for efficiency
+      $sourcedir = "${foreign_arch_basedir}/${fileprefix}/${kernel_version}"
+      $targetdir = "/${fileprefix}-${foreign_arch}/${kernel_version}"
+
+      exec {
+        "/usr/bin/rsync -a ${sourcedir}/ ${targetdir}.tmp/ && /bin/mv ${targetdir}.tmp ${targetdir}":
+          creates => $targetdir,
+          require => Package['rsync'];
       }
+
+      Package <| title == rsync |>
     }
   }
 
