@@ -38,7 +38,6 @@ class packages::kernels {
     $fileprefixlist = [ 'boot/abi-'
                       , 'boot/config-'
                       , 'boot/initrd.img-'
-                      , 'boot/nbi.img-'
                       , 'boot/System.map-'
                       , 'boot/vmlinuz-' ]
 

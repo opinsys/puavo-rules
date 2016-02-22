@@ -56,12 +56,6 @@ class kernels {
         linkname   => 'initrd.img',
         linksuffix => $linksuffix;
 
-      "nbi.img-${kernel}-${subname}-${arch}":
-        archsuffix => $archsuffix,
-        kernel     => $kernel,
-        linkname   => 'nbi.img',
-        linksuffix => $linksuffix;
-
       "vmlinuz-${kernel}-${subname}-${arch}":
         archsuffix => $archsuffix,
         kernel     => $kernel,
