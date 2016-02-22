@@ -29,11 +29,17 @@ class packages::kernels {
     }
   }
 
-  define foreign_arch_kernel_files ($foreign_arch, $foreign_arch_basedir) {
+  define foreign_arch_kernel_files ($foreign_arch,
+                                    $foreign_arch_basedir,
+                                    $with_dbg) {
     $kernel_version = $title
 
-    $dirprefixlist = [ 'lib/modules'
-                     , 'usr/lib/debug/lib/modules' ]
+    if $with_dbg == 'true' {
+      $dirprefixlist = [ 'lib/modules'
+                       , 'usr/lib/debug/lib/modules' ]
+    } else {
+      $dirprefixlist = [ 'lib/modules' ]
+    }
 
     $fileprefixlist = [ 'boot/abi-'
                       , 'boot/config-'
@@ -111,7 +117,8 @@ class packages::kernels {
       foreign_arch_kernel_files {
         $version:
           foreign_arch         => 'amd64',
-          foreign_arch_basedir => '/mnt/amd64';
+          foreign_arch_basedir => '/mnt/amd64',
+          with_dbg             => $with_dbg;
       }
     }
   }
