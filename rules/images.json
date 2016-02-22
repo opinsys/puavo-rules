@@ -11,6 +11,10 @@
         "puppet-classes": "image::desktop",
         "images": { "i386": { "trusty": [] } }
       },
+      "hwbase": {
+        "puppet-classes": "image::hwbase",
+        "images": { "amd64": { "trusty": [] } }
+      },
       "thinclient": {
         "puppet-classes": "image::thinclient",
         "images": { "i386": { "precise": [] } }
