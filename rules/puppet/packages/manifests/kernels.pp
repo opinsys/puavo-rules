@@ -4,6 +4,7 @@ class packages::kernels {
 
   define foreign_arch_files ($foreign_arch,
                              $foreign_arch_basedir,
+                             $foreign_arch_version,
                              $kernel_version,
                              $filetype='file') {
     $titlearray = split($title, ' ')
@@ -12,11 +13,11 @@ class packages::kernels {
     if $filetype == 'file' {
       file {
         "/${fileprefix}${kernel_version}-${foreign_arch}":
-          source => "${foreign_arch_basedir}/${fileprefix}${kernel_version}";
+          source => "${foreign_arch_basedir}/${fileprefix}${foreign_arch_version}";
       }
     } elsif $filetype == 'directory' {
       # use exec/rsync for efficiency
-      $sourcedir = "${foreign_arch_basedir}/${fileprefix}/${kernel_version}"
+      $sourcedir = "${foreign_arch_basedir}/${fileprefix}/${foreign_arch_version}"
       $targetdir = "/${fileprefix}-${foreign_arch}/${kernel_version}"
 
       exec {
@@ -31,6 +32,7 @@ class packages::kernels {
 
   define foreign_arch_kernel_files ($foreign_arch,
                                     $foreign_arch_basedir,
+                                    $foreign_arch_version,
                                     $with_dbg) {
     $kernel_version = $title
 
@@ -61,20 +63,23 @@ class packages::kernels {
         filetype             => 'directory',
         foreign_arch         => $foreign_arch,
         foreign_arch_basedir => $foreign_arch_basedir,
+        foreign_arch_version => $foreign_arch_version,
         kernel_version       => $kernel_version;
 
       $foreign_arch_files:
         foreign_arch         => $foreign_arch,
         foreign_arch_basedir => $foreign_arch_basedir,
+        foreign_arch_version => $foreign_arch_version,
         kernel_version       => $kernel_version;
     }
   }
 
-  define kernel_package ($package_tag='',
-                         $with_extra=true,
-                         $with_dbg=false,
+  define kernel_package ($amd64_version='',
+                         $dkms_modules=[],
+                         $package_tag='',
                          $pkgarch='',
-                         $dkms_modules=[]) {
+                         $with_dbg=false,
+                         $with_extra=true) {
     $version = $title
 
     $pkgarch_postfix = $pkgarch ? { '' => '', default => ":$pkgarch", }
@@ -114,10 +119,16 @@ class packages::kernels {
     }
 
     if $architecture == 'i386' {
+      $foreign_arch_version = $amd64_version ? {
+                                ''      => $version,
+                                default => $amd64_version,
+                              }
+
       foreign_arch_kernel_files {
         $version:
           foreign_arch         => 'amd64',
           foreign_arch_basedir => '/mnt/amd64',
+          foreign_arch_version => $foreign_arch_version,
           with_dbg             => $with_dbg;
       }
     }

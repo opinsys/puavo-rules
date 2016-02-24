@@ -95,9 +95,10 @@ class kernels {
       $default_kernel = $precise_kernel
     }
     'trusty': {
+      $precise_kernel_amd64 = '3.2.0-99-generic'
       $precise_kernel = $architecture ? {
-                          'i386'  => '3.2.0-99-generic-pae',
-                          default => '3.2.0-99-generic',
+                          'i386'  => "${precise_kernel_amd64}-pae",
+                          default => $precise_kernel_amd64,
                         }
       $trusty_kernel  = '3.13.0-78-generic'
       $vivid_kernel   = '3.19.0-50-generic'
@@ -148,8 +149,9 @@ class kernels {
     'trusty': {
       packages::kernels::kernel_package {
         $precise_kernel:
-          package_tag => 'puavo',
-          with_extra  => false;
+          amd64_version => $precise_kernel_amd64,
+          package_tag   => 'puavo',
+          with_extra    => false;
 
         $trusty_kernel:
           package_tag => 'puavo';
