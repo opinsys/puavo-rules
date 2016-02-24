@@ -95,7 +95,10 @@ class kernels {
       $default_kernel = $precise_kernel
     }
     'trusty': {
-      $precise_kernel = '3.2.0-70-generic-pae'
+      $precise_kernel = $architecture ? {
+                          'i386'  => '3.2.0-99-generic-pae',
+                          default => '3.2.0-99-generic',
+                        }
       $trusty_kernel  = '3.13.0-78-generic'
       $vivid_kernel   = '3.19.0-50-generic'
       $hwgen2_kernel  = '4.0.9.opinsys2'
