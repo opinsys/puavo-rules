@@ -97,9 +97,7 @@ class kernels {
     'trusty': {
       $precise_kernel = '3.2.0-70-generic-pae'
       $trusty_kernel  = '3.13.0-78-generic'
-      $utopic_kernel  = '3.16.0-61-generic'
       $vivid_kernel   = '3.19.0-50-generic'
-      $wily_kernel    = '4.2.0-29-generic'
       $hwgen2_kernel  = '4.0.9.opinsys2'
       $hwgen3_kernel  = '4.2.8.opinsys2'
       $edge_kernel    = '4.3.3.opinsys2'
@@ -112,9 +110,7 @@ class kernels {
         'hwgen3': kernel => $hwgen3_kernel;
         'legacy': kernel => $precise_kernel;
         'stable': kernel => $trusty_kernel;
-        'utopic': kernel => $utopic_kernel;
         'vivid':  kernel => $vivid_kernel;
-        'wily':   kernel => $wily_kernel;
       }
     }
   }
@@ -155,7 +151,7 @@ class kernels {
         $trusty_kernel:
           package_tag => 'puavo';
 
-        [ $utopic_kernel, $vivid_kernel, $wily_kernel ]:
+        $vivid_kernel:
           ;
 
         [ $hwgen2_kernel, $hwgen3_kernel ]:
