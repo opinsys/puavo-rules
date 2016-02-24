@@ -43,8 +43,7 @@ class packages::kernels {
       $dirprefixlist = [ 'lib/modules' ]
     }
 
-    $fileprefixlist = [ 'boot/abi-'
-                      , 'boot/config-'
+    $fileprefixlist = [ 'boot/config-'
                       , 'boot/initrd.img-'
                       , 'boot/System.map-'
                       , 'boot/vmlinuz-' ]
