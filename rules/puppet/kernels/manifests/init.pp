@@ -103,7 +103,7 @@ class kernels {
       $vivid_kernel   = '3.19.0-50-generic'
       $hwgen2_kernel  = '4.0.9.opinsys2'
       $hwgen3_kernel  = '4.2.8.opinsys2'
-      $edge_kernel    = '4.3.3.opinsys2'
+      $edge_kernel    = '4.4.1.opinsys1'
 
       $default_kernel = $trusty_kernel
 
