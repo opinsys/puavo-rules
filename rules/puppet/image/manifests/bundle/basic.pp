@@ -6,6 +6,7 @@ class image::bundle::basic {
 	  disable_suspend_on_nbd_devices,
 	  disable_unclutter,
 	  disable_update_notifications,
+	  graphics_drivers,
 	  graphics_stack_hacks,
 	  kernels,
 	  keyboard_hw_quirks,
