@@ -1,5 +1,7 @@
-.DELETE_ON_ERROR: ImageBuildMakefile
+sinclude buildvars.mk
+
 ImageBuildMakefile: images.json
-	puavo-build-image --images-config $< --output-makefile > $@
+	puavo-build-image --images-config $< --output-makefile > $@.tmp
+	mv $@.tmp $@
 
 include ImageBuildMakefile
