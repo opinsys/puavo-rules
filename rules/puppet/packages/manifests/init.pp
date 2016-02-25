@@ -102,6 +102,13 @@ class packages {
     , 'xul-ext-mozvoikko' ]:
       tag => [ 'desktop', 'ubuntu', ];
 
+    # "indicator-application" gets installed by some dependency (through
+    # chrome-browser) as amd64-package on i386 for some reason.  There is
+    # probably a better fix, but meanwhile forcing the native architecture
+    # will do:
+    [ "indicator-application:${architecture}" ]:
+      tag => [ 'desktop', 'ubuntu', ];
+
     [ 'ubuntu-restricted-addons'
     , 'ubuntu-restricted-extras' ]:
       tag => [ 'desktop', 'restricted', 'ubuntu', ];
