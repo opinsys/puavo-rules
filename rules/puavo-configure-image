@@ -17,7 +17,7 @@ apply_debseeds() {
 apply_puppet_rules() {
   error_on_change=$1
   buildrules=$2
-  
+
   puppet_classes=$(get_and_cache_puppet_classes "$buildrules")
 
   if $error_on_change; then
