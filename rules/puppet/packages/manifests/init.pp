@@ -102,13 +102,6 @@ class packages {
     , 'xul-ext-mozvoikko' ]:
       tag => [ 'desktop', 'ubuntu', ];
 
-    # "indicator-application" gets installed by some dependency (through
-    # chrome-browser) as amd64-package on i386 for some reason.  There is
-    # probably a better fix, but meanwhile forcing the native architecture
-    # will do:
-    [ "indicator-application:${architecture}" ]:
-      tag => [ 'desktop', 'ubuntu', ];
-
     [ 'ubuntu-restricted-addons'
     , 'ubuntu-restricted-extras' ]:
       tag => [ 'desktop', 'restricted', 'ubuntu', ];
@@ -799,6 +792,21 @@ class packages {
       tag => [ 'puavo', 'required-by-restricted' ];
   }
 
+  if $architecture == 'i386' {
+    # "indicator-application" gets installed by some dependency (through
+    # chrome-browser) as amd64-package on i386 for some reason.  There is
+    # probably a better fix, but meanwhile forcing the native architecture
+    # will do:
+    package {
+      "indicator-application:${architecture}":
+        require => [ Package['libappindicator1:amd64']
+                   , Package['libappindicator3-1:amd64']
+                   , Package['libindicator3-7:amd64']
+                   , Package['libindicator7:amd64'] ],
+        tag => [ 'desktop', 'ubuntu', ];
+    }
+  }
+
   # some basic packages for amd64-environment that other packages need
   # but do not list as dependencies (because they presume that system
   # could not function at all without these... but it does, because base
@@ -807,5 +815,12 @@ class packages {
     # for 64-bit chrome
     [ 'libexif12:amd64', 'libpulse0:amd64', 'libudev1:amd64' ]:
       tag => [ 'basic', 'ubuntu', ];
+
+    # for 64-bit chrome
+    [ 'libappindicator1:amd64'
+    , 'libappindicator3-1:amd64'
+    , 'libindicator3-7:amd64'
+    , 'libindicator7:amd64' ]:
+      tag => [ 'desktop', 'ubuntu', ];
   }
 }
