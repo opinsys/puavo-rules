@@ -91,6 +91,12 @@ EOF
 EOF
   chmod 755 /usr/sbin/policy-rc.d
 
+  # setup architecture specific kernel modules dir
+  dpkg_arch=$(dpkg --print-architecture)
+  mv /lib/modules "/lib/modules-${dpkg_arch}" 2>/dev/null \
+    || mkdir -p "/lib/modules-${dpkg_arch}"
+  ln -fns "modules-${dpkg_arch}" /lib/modules
+
   apt-get -qq -y update
   apt-get -qq -y install language-pack-en puppet-common
 
