@@ -164,9 +164,9 @@ class kernels {
           with_dbg    => true,
           with_extra  => false;
 
-        # the bcmwl-version does not compile for this kernel
+        # dkms modules do not build on current edge
         $edge_kernel:
-          dkms_modules => [ $r8168_dkms_module, ],
+          dkms_modules => [],
           package_tag  => 'puavo',
           with_extra   => false;
       }
