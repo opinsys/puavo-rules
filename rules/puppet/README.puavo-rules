@@ -113,6 +113,9 @@ network_manager
     Allow users to modify network manager connections, but clean them
     up so that those modifications are (normally) only temporary.
 
+openjdk
+    OpenJDK related settings.
+
 opinsys_apt_repositories
     The public apt repositories maintained by Opinsys.
 

@@ -15,6 +15,7 @@ class image::bundle::desktop {
           laptop_mode_tools,
           libreoffice,
           network_manager,
+          openjdk,
           puavo_wlan,
           pycharm,
           tuxpaint,
