@@ -168,7 +168,6 @@ class kernels {
         $edge_kernel:
           dkms_modules => [ $r8168_dkms_module, ],
           package_tag  => 'puavo',
-          with_dbg     => true,
           with_extra   => false;
       }
     }
