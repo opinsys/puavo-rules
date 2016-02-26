@@ -5,10 +5,6 @@ class chromium {
   dpkg::simpledivert { '/usr/bin/chromium-browser': ; }
 
   file {
-    '/etc/chromium-browser/default':
-      source  => 'puppet:///modules/chromium/etc_chromium_browser_default',
-      require => [ Package['chromium-browser'] ];
-
     '/usr/bin/chromium-browser':
       mode   => 755,
       source => 'puppet:///modules/chromium/chromium-browser';
