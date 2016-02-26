@@ -698,8 +698,6 @@ class packages {
     , 'epiphany-browser'
     , 'icedtea-7-plugin'
     , 'liferea'
-    , 'openjdk-6-jdk'
-    , 'openjdk-6-jre'
     , 'php5-cli'
     , 'php5-sqlite'
     , 'sqlite3' ]:
