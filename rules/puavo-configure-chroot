@@ -72,10 +72,30 @@ do_mounts() {
   mount -o bind /dev/pts "${target_dir}/dev/pts"
   mount -o bind /proc    "${target_dir}/proc"
   mount -o bind /sys     "${target_dir}/sys"
+
+  for mountinfo in $buildmounts; do
+    mountdir=${mountinfo%:*}
+    mountfile=${mountinfo#*:}
+
+    mkdir -p "${target_dir}/${mountdir}"
+
+    if [ -d "$mountfile" ]; then
+      mountopts='bind'  # bind,ro would be nice but does not work
+    else
+      mountopts='ro'
+    fi
+
+    mount -o "$mountopts" "${mountfile}" "${target_dir}/${mountdir}"
+  done
 }
 
 do_umounts() {
   test -d "$target_dir" || return 0
+
+  for mountinfo in $buildmounts; do
+    mountdir=${mountinfo%:*}
+    umount -l "${target_dir}/${mountdir}"
+  done
 
   # umount -l or -f ?  (XXX -f did not seem to work)
   umount -l "${target_dir}/dev/pts"
@@ -146,19 +166,21 @@ EOF
   exit 1
 }
 
-trap cleanup 0 INT TERM
-
 if ! args=$(getopt -n "$0" -o + \
-              -l 'apply-buildrules,bootstrap,buildrule-dirs:,image-configure-script:,install-packages:,target-dir:,wipe-chroot' \
+              -l 'apply-buildrules,bootstrap,buildmounts:,buildrule-dirs:,image-configure-script:,install-packages:,target-dir:,wipe-chroot' \
               -- "$@"); then
   usage
 fi
 
 action=
+buildmounts=
 buildrule_dirs=
 image_configure_script=
 package_dirs=
 target_dir=
+
+# cleanup trap uses buildmounts variable, so it must be defined before this:
+trap cleanup 0 INT TERM
 
 eval "set -- $args"
 
@@ -174,6 +196,9 @@ while [ $# -ne 0 ]; do
       action=install-packages
       ;;
 
+    --buildmounts)
+      buildmounts=$2; shift; shift
+      ;;
     --buildrule-dirs)
       buildrule_dirs=$2; shift; shift
       ;;
