@@ -20,8 +20,18 @@ class packages::kernels {
       $sourcedir = "${foreign_arch_basedir}/${fileprefix}/${foreign_arch_version}"
       $targetdir = "/${fileprefix}-${foreign_arch}/${kernel_version}"
 
+      if $foreign_arch_version != $kernel_version {
+        file {
+          "/${fileprefix}-${foreign_arch}/${foreign_arch_version}":
+            ensure  => link,
+	    require => Exec["sync ${sourcedir} to ${targetdir}"],
+	    target  => $kernel_version;
+        }
+      }
+
       exec {
-        "/usr/bin/rsync -a ${sourcedir}/ ${targetdir}.tmp/ && /bin/mv ${targetdir}.tmp ${targetdir}":
+        "sync ${sourcedir} to ${targetdir}":
+	  command => "/usr/bin/rsync -a ${sourcedir}/ ${targetdir}.tmp/ && /bin/mv ${targetdir}.tmp ${targetdir}",
           creates => $targetdir,
           require => Package['rsync'];
       }
