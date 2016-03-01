@@ -100,8 +100,8 @@ class kernels {
                           'i386'  => "${precise_kernel_amd64}-pae",
                           default => $precise_kernel_amd64,
                         }
-      $trusty_kernel  = '3.13.0-78-generic'
-      $vivid_kernel   = '3.19.0-50-generic'
+      $trusty_kernel  = '3.13.0-79-generic'
+      $vivid_kernel   = '3.19.0-51-generic'
       $hwgen2_kernel  = '4.0.9.opinsys3'
       $hwgen3_kernel  = '4.2.8.opinsys3'
       $edge_kernel    = '4.4.3-040403-generic'
