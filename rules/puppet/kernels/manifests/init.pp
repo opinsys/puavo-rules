@@ -95,6 +95,11 @@ class kernels {
       $default_kernel = $precise_kernel
     }
     'trusty': {
+      $old_precise_kernel_amd64 = '3.2.0-70-generic'
+      $old_precise_kernel = $architecture ? {
+                              'i386'  => "${old_precise_kernel_amd64}-pae",
+                              default => $old_precise_kernel_amd64,
+                            }
       $precise_kernel_amd64 = '3.2.0-99-generic'
       $precise_kernel = $architecture ? {
                           'i386'  => "${precise_kernel_amd64}-pae",
@@ -109,12 +114,13 @@ class kernels {
       $default_kernel = $trusty_kernel
 
       all_kernel_links {
-        'edge':   kernel => $edge_kernel;
-        'hwgen2': kernel => $hwgen2_kernel;
-        'hwgen3': kernel => $hwgen3_kernel;
-        'legacy': kernel => $precise_kernel;
-        'stable': kernel => $trusty_kernel;
-        'vivid':  kernel => $vivid_kernel;
+        'edge':      kernel => $edge_kernel;
+        'hwgen2':    kernel => $hwgen2_kernel;
+        'hwgen3':    kernel => $hwgen3_kernel;
+        'legacy':    kernel => $precise_kernel;
+        'oldlegacy': kernel => $old_precise_kernel;
+        'stable':    kernel => $trusty_kernel;
+        'vivid':     kernel => $vivid_kernel;
       }
     }
   }
@@ -148,6 +154,11 @@ class kernels {
     }
     'trusty': {
       packages::kernels::kernel_package {
+        $old_precise_kernel:
+          amd64_version => $old_precise_kernel_amd64,
+          package_tag   => 'puavo',
+          with_extra    => false;
+
         $precise_kernel:
           amd64_version => $precise_kernel_amd64,
           package_tag   => 'puavo',
