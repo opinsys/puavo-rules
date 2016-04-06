@@ -700,9 +700,12 @@ class packages {
     , 'liferea'
     , 'openjdk-8-jdk'
     , 'openjdk-8-jre'
+    , 'perltidy'
     , 'php5-cli'
     , 'php5-sqlite'
-    , 'sqlite3' ]:
+    , 'sqlite3'
+    , 'tidy'
+    , 'weblint' ]:
       tag => [ 'web', 'ubuntu', ];
   }
 
