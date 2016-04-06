@@ -148,6 +148,8 @@ class packages::kernels {
 
     file {
       [ "/lib/modules-${foreign_arch}"
+      , '/usr/lib/debug'
+      , '/usr/lib/debug/lib'
       , "/usr/lib/debug/lib/modules-${foreign_arch}" ]:
         ensure => directory;
     }
