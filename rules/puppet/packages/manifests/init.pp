@@ -938,4 +938,18 @@ class packages {
     , 'zlib1g:amd64' ]:
       tag => [ '64bitchrome', 'ubuntu', ];
   }
+
+  # Dropbox downloads updates to $HOME/.dropbox-dist directory
+  # automatically and ends up using them instead of
+  # nautilus-dropbox-dist. It's a bit unfortunate but still quite
+  # fine. However, when running 64bit kernels, dropbox downloads 64bit
+  # dropbox, which does not work without these libraries.
+  @package {
+    [ 'libice6:amd64'
+    , 'libncurses5:amd64'
+    , 'libsm6:amd64'
+    , 'libxxf86vm1:amd64'
+    , 'libxslt1.1:amd64' ]:
+      tag => [ '64bitdropbox', 'ubuntu', ];
+  }
 }
