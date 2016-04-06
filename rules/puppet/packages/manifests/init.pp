@@ -705,7 +705,7 @@ class packages {
     , 'php5-sqlite'
     , 'sqlite3'
     , 'tidy'
-    , 'weblint' ]:
+    , 'weblint-perl' ]:
       tag => [ 'web', 'ubuntu', ];
   }
 
