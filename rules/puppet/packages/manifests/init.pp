@@ -154,12 +154,9 @@ class packages {
     [ 'ttf-mscorefonts-installer' ]:
       tag => [ 'fonts', 'ubuntu', ];
 
-    [ 'billard-gl'
-    , 'cuyo'
-    , 'dosbox'
+    [ 'dosbox'
     , 'extremetuxracer'
     , 'freeciv-client-gtk'
-    , 'frozen-bubble'
     , 'gbrainy'
     , 'gcompris'
     , 'gcompris-sound-en'
@@ -169,11 +166,9 @@ class packages {
     , 'gnotski'
     , 'gnubg'
     , 'gnuchess'
-    , 'icebreaker'
     , 'kanagram'
     , 'kdeedu'
     , 'khangman'
-    , 'kolf'
     , 'ktouch'
     , 'ktuberling'
     , 'kwordquiz'
@@ -184,14 +179,12 @@ class packages {
     , 'neverputt'
     , 'openttd'
     , 'pacman'
-    , 'pingus'
     , 'realtimebattle'
     , 'sgt-puzzles'
     , 'supertuxkart'
     , 'tuxmath'
     , 'tuxpaint'
     , 'tuxpaint-stamps-default'
-    , 'warmux'
     , 'xmoto' ]:
       tag => [ 'games', 'ubuntu', ];
 
@@ -241,7 +234,6 @@ class packages {
     , 'nautilus-image-converter'
     , 'okular'
     , 'openshot'
-    , 'pencil'
     , 'photofilmstrip'
     , 'pinta'
     , 'pitivi'
@@ -257,8 +249,7 @@ class packages {
     [ 'kdump-tools' ]:
       tag => [ 'kernelutils', 'ubuntu', ];
 
-    [ 'emesene'
-    , 'gobby'
+    [ 'gobby'
     , 'irssi'
     , 'irssi-plugin-xmpp'
     , 'pidgin'
@@ -295,13 +286,11 @@ class packages {
     , 'xbmc' ]:
       tag => [ 'mediaplayer', 'ubuntu', ];
 
-    [ 'ardour'
-    , 'audacity'
+    [ 'audacity'
     , 'denemo'
     , 'fmit'
     , 'hydrogen'
     , 'lmms'
-    , 'mixxx'
     , 'musescore'
     , 'musescore-soundfont-gm'
     , 'qsynth'
@@ -309,7 +298,6 @@ class packages {
     , 'rosegarden'
     , 'solfege'
     , 'soundconverter'
-    , 'sweep'
     , 'tuxguitar'
     , 'tuxguitar-jsa' ]:
       tag => [ 'music_making', 'ubuntu', ];
@@ -322,7 +310,6 @@ class packages {
 
     [ 'calibre'
     , 'fbreader'
-    , 'librecad'
     , 'libreoffice'
     , 'libreoffice-base'
     , 'scribus'
@@ -390,14 +377,11 @@ class packages {
     , 'celestia'
     , 'celestia-common-nonfree'
     , 'celestia-gnome'
-    , 'drgeo'
-    , 'drgeo-doc'
     , 'gchempaint'
     , 'ghemical'
     , 'gnucap'
     , 'gnuplot'
     , 'gnuplot-x11'
-    , 'gretl'
     , 'kalzium'
     , 'kbruch'
     , 'kgeography'
