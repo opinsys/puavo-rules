@@ -805,7 +805,8 @@ class packages {
     # For 64-bit chrome.  We have an extensive list, so that google-chrome
     # can be installed as an addon, that is, we can get all its dependencies
     # without expecting the package to pull them.
-    [ 'libappindicator1:amd64'
+    [ 'gtk2-engines-murrine:amd64'
+    , 'libappindicator1:amd64'
     , 'libappindicator3-1:amd64'
     , 'libasn1-8-heimdal:amd64'
     , 'libasound2:amd64'
