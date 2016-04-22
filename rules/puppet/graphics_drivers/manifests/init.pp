@@ -4,12 +4,7 @@ class graphics_drivers {
                         # because we run ldconfig and save its output for
                         # later use.
 
-  $machine = $architecture ? {
-               'amd64' => 'x86_64',
-               default => $architecture,
-             }
-
-  define driver_alternatives ($gl_conf_target) {
+  define driver_alternatives ($gl_conf_target, $machine) {
     $driver      = $title
     $ld_so_cache = "/etc/ld.so.cache-$driver"
 
@@ -17,42 +12,48 @@ class graphics_drivers {
       "setup $driver alternatives":
         command =>
           "/usr/bin/update-alternatives \
-               --set ${graphics_drivers::machine}-linux-gnu_gl_conf \
-                     $gl_conf_target \
+               --set ${$machine}-linux-gnu_gl_conf $gl_conf_target \
              && /sbin/ldconfig \
              && /bin/cp -p /etc/ld.so.cache /etc/ld.so.cache-$driver",
         onlyif =>
-          "/usr/bin/test /etc/ld.so.cache-mesa -ot /etc/ld.so.cache";
+          "/usr/bin/test /etc/ld.so.cache-mesa-amd64 -ot /etc/ld.so.cache";
     }
   }
 
-  case $architecture {
-    'amd64', 'i386': {
-      driver_alternatives {
-       'mesa':
-          gl_conf_target
-            => "/usr/lib/${machine}-linux-gnu/mesa/ld.so.conf",
-          require => [ Driver_alternatives['nvidia']
-                     , Package['libgl1-mesa-glx'] ];
+  driver_alternatives {
+    'mesa-i386':
+      gl_conf_target => "/usr/lib/i386-linux-gnu/mesa/ld.so.conf",
+      machine        => 'i386',
+      require        => [ Driver_alternatives['nvidia']
+                        , Package['libgl1-mesa-glx'] ];
 
-       'nvidia':
-          before         => File['/etc/modprobe.d/nvidia-304_hybrid.conf'],
-          gl_conf_target => '/usr/lib/nvidia-304/ld.so.conf',
-          notify         => Driver_alternatives['mesa'],
-          require        => [ Package['nvidia-304']
-                            , Package['nvidia-settings'] ];
-      }
+    'mesa-amd64':
+      gl_conf_target => "/usr/lib/x86_64-linux-gnu/mesa/ld.so.conf",
+      machine        => 'x86_64',
+      require        => [ Driver_alternatives['nvidia']
+                        , Driver_alternatives['mesa-i386']
+                        , Package['libgl1-mesa-glx:amd64'] ];
 
-      file {
-        # Nouveau must be blacklisted so we can use nvidia,
-        # but "alias nouveau off" is a no-no.
-        '/etc/modprobe.d/nvidia-304_hybrid.conf':
-          content => template('graphics_drivers/blacklist-nouveau.conf');
-      }
-
-      Package <| title == libgl1-mesa-glx
-              or title == nvidia-304
-              or title == nvidia-settings |>
-    }
+    'nvidia':
+      before         => File['/etc/modprobe.d/nvidia-304_hybrid.conf'],
+      gl_conf_target => '/usr/lib/nvidia-304/ld.so.conf',
+      machine        => 'i386',
+      notify         => [ Driver_alternatives['mesa-i386']
+                        , Driver_alternatives['mesa-amd64'] ],
+      require        => [ Package['nvidia-304']
+                        , Package['nvidia-settings'] ];
   }
+
+  file {
+    # Nouveau must be blacklisted so we can use nvidia,
+    # but "alias nouveau off" is a no-no.
+    '/etc/modprobe.d/nvidia-304_hybrid.conf':
+      content => template('graphics_drivers/blacklist-nouveau.conf');
+  }
+
+  Package <| title == libgl1-mesa-glx
+          or title == 'libgl1-mesa-glx:amd64'
+          or title == nvidia-304
+          or title == nvidia-settings |>
+
 }
