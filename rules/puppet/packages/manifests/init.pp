@@ -134,6 +134,7 @@ class packages {
     , 'dkms'
     , 'firmware-b43-installer'
     , 'libgl1-mesa-glx'
+    , 'libgl1-mesa-glx:amd64'
     , 'linux-firmware'
     , 'nvidia-304'
     , 'nvidia-settings'
