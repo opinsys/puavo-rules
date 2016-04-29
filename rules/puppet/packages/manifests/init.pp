@@ -203,7 +203,8 @@ class packages {
 
     # needed by (gnome|unity)-control-center accessibility settings
     , 'libunity-core-6.0-9'
-
+ 
+    , 'libwayland-egl1-mesa'
     , 'notification-daemon'
     , 'thunderbird-gnome-support'
     , 'ubuntu-docs' ]:
