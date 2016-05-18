@@ -11,3 +11,9 @@ keyboard:dmi:bvn*:bvr*:bd*:svnHP*:pnHP*ProBook*430*G3:pvr*
  KEYBOARD_KEY_97=brightnessup
  KEYBOARD_KEY_ee=switchvideomode
  KEYBOARD_KEY_81=f20                        # micmute
+
+keyboard:dmi:bvn*:bvr*:bd*:svnHP*:pnHP*EliteBook*G3:pvr*
+ KEYBOARD_KEY_92=brightnessdown
+ KEYBOARD_KEY_97=brightnessup
+ KEYBOARD_KEY_ee=switchvideomode
+ KEYBOARD_KEY_81=f20                        # micmute
