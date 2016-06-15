@@ -110,7 +110,7 @@ class kernels {
       $hwgen2_kernel  = '4.0.9.opinsys3'
       $hwgen3_kernel  = '4.2.8.opinsys3'
       $hwgen4_kernel  = '4.5.7-040507-generic'
-      $edge_kernel    = '4.5.0-040500-generic'
+      $edge_kernel    = '4.6.2-040602-generic'
 
       $default_kernel = $trusty_kernel
 
