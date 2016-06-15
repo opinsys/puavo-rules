@@ -109,6 +109,7 @@ class kernels {
       $vivid_kernel   = '3.19.0-51-generic'
       $hwgen2_kernel  = '4.0.9.opinsys3'
       $hwgen3_kernel  = '4.2.8.opinsys3'
+      $hwgen4_kernel  = '4.5.7-040507-generic'
       $edge_kernel    = '4.5.0-040500-generic'
 
       $default_kernel = $trusty_kernel
@@ -117,6 +118,7 @@ class kernels {
         'edge':      kernel => $edge_kernel;
         'hwgen2':    kernel => $hwgen2_kernel;
         'hwgen3':    kernel => $hwgen3_kernel;
+        'hwgen4':    kernel => $hwgen4_kernel;
         'legacy':    kernel => $precise_kernel;
         'oldlegacy': kernel => $old_precise_kernel;
         'stable':    kernel => $trusty_kernel;
@@ -173,6 +175,11 @@ class kernels {
         [ $hwgen2_kernel, $hwgen3_kernel ]:
           package_tag => 'puavo',
           with_dbg    => true,
+          with_extra  => false;
+
+        [ $hwgen4_kernel ]:
+          package_tag => 'puavo',
+          with_dbg    => false,
           with_extra  => false;
 
         # dkms modules do not build on current edge
