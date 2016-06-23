@@ -178,9 +178,10 @@ class kernels {
           with_extra  => false;
 
         [ $hwgen4_kernel ]:
-          package_tag => 'puavo',
-          with_dbg    => false,
-          with_extra  => false;
+          dkms_modules => [],
+          package_tag  => 'puavo',
+          with_dbg     => false,
+          with_extra   => false;
 
         # dkms modules do not build on current edge
         $edge_kernel:
