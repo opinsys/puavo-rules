@@ -133,7 +133,7 @@ class packages {
     [ 'bcmwl-kernel-source'
     , 'dkms'
     , 'firmware-b43-installer'
-    , 'libgl1-mesa-glx'
+    , 'libgl1-mesa-glx:i386'
     , 'libgl1-mesa-glx:amd64'
     , 'linux-firmware'
     , 'nvidia-304'

@@ -25,7 +25,7 @@ class graphics_drivers {
       gl_conf_target => "/usr/lib/i386-linux-gnu/mesa/ld.so.conf",
       machine        => 'i386',
       require        => [ Driver_alternatives['nvidia']
-                        , Package['libgl1-mesa-glx'] ];
+                        , Package['libgl1-mesa-glx:i386'] ];
 
     'mesa-amd64':
       gl_conf_target => "/usr/lib/x86_64-linux-gnu/mesa/ld.so.conf",
@@ -51,7 +51,7 @@ class graphics_drivers {
       content => template('graphics_drivers/blacklist-nouveau.conf');
   }
 
-  Package <| title == libgl1-mesa-glx
+  Package <| title == 'libgl1-mesa-glx:i386'
           or title == 'libgl1-mesa-glx:amd64'
           or title == nvidia-304
           or title == nvidia-settings |>
