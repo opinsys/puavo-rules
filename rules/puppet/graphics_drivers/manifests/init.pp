@@ -4,7 +4,7 @@ class graphics_drivers {
                         # because we run ldconfig and save its output for
                         # later use.
 
-  define driver_alternatives ($gl_conf_target, $machine) {
+  define driver_alternatives ($gl_conf_target, $machine, $priority = 100) {
     $driver      = $title
     $ld_so_cache = "/etc/ld.so.cache-$driver"
 
@@ -12,7 +12,10 @@ class graphics_drivers {
       "setup $driver alternatives":
         command =>
           "/usr/bin/update-alternatives \
-               --set ${$machine}-linux-gnu_gl_conf $gl_conf_target \
+               --install /etc/ld.so.conf.d/${machine}-linux-gnu_GL.conf \
+               ${machine}-linux-gnu_gl_conf $gl_conf_target $priority \
+             && /usr/bin/update-alternatives \
+               --set ${machine}-linux-gnu_gl_conf $gl_conf_target \
              && /sbin/ldconfig \
              && /bin/cp -p /etc/ld.so.cache /etc/ld.so.cache-$driver",
         onlyif =>
