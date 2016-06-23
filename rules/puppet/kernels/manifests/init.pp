@@ -178,7 +178,7 @@ class kernels {
           with_extra  => false;
 
         [ $hwgen4_kernel ]:
-          dkms_modules => [],
+          dkms_modules => [ $r8168_dkms_module ],
           package_tag  => 'puavo',
           with_dbg     => false,
           with_extra   => false;
