@@ -137,7 +137,7 @@ class kernels {
 
   $bcmwl_dkms_module  = 'bcmwl/6.30.223.248+bdcom'
   $nvidia_dkms_module = 'nvidia-304/304.131'
-  $r8168_dkms_module  = 'r8168/8.040.00'
+  $r8168_dkms_module  = 'r8168/8.042.00'
   $all_dkms_modules   = [ $bcmwl_dkms_module
                         , $nvidia_dkms_module
                         , $r8168_dkms_module ]
