@@ -9,12 +9,19 @@ class graphics_drivers {
     $ld_so_cache = "/etc/ld.so.cache-$driver"
 
     exec {
-      "setup $driver alternatives":
+      "install $driver alternatives":
+        before  => Exec["setup $driver alternatives"],
         command =>
           "/usr/bin/update-alternatives \
                --install /etc/ld.so.conf.d/${machine}-linux-gnu_GL.conf \
-               ${machine}-linux-gnu_gl_conf $gl_conf_target $priority \
-             && /usr/bin/update-alternatives \
+               ${machine}-linux-gnu_gl_conf $gl_conf_target $priority",
+        onlyif  =>
+	  "/usr/bin/update-alternatives --list ${machine}-linux-gnu_gl_conf \
+	       | /bin/grep -q -x $gl_conf_target && /bin/false";
+
+      "setup $driver alternatives":
+        command =>
+          "/usr/bin/update-alternatives \
                --set ${machine}-linux-gnu_gl_conf $gl_conf_target \
              && /sbin/ldconfig \
              && /bin/cp -p /etc/ld.so.cache /etc/ld.so.cache-$driver",
