@@ -492,7 +492,7 @@ The current presentation contains no OLE objects.</value>
         <value xml:lang="en-US">~Delete</value>
       </prop>
       <prop oor:name="STR_GRAPHIC_OPTIMIZATION">
-        <value xml:lang="en-US">Choose settings for optimizing images</value>
+        <value xml:lang="en-US">Choose settings for optimizing pictures and graphics</value>
       </prop>
       <prop oor:name="STR_IMAGE_OPTIMIZATION">
         <value xml:lang="en-US">Graphics</value>
@@ -1623,14 +1623,6 @@ The current presentation contains no OLE objects.</value>
             </prop>
             <prop oor:name="Right">
               <value xml:lang="en-US">Shows the Slides Overview</value>
-            </prop>
-          </node>
-          <node oor:name="x" oor:op="replace">
-            <prop oor:name="Left">
-              <value xml:lang="en-US">Ctrl-'4'</value>
-            </prop>
-            <prop oor:name="Right">
-              <value xml:lang="en-US">Switches monitors</value>
             </prop>
           </node>
         </node>
@@ -4379,7 +4371,7 @@ The current presentation contains no OLE objects.</value>
             <value>0</value>
           </prop>
           <prop oor:name="Visible" oor:type="xs:boolean">
-            <value>false</value>
+            <value>true</value>
           </prop>
           <prop oor:name="UIName" oor:type="xs:string">
             <value xml:lang="en-US">Line and Filling</value>
@@ -4632,10 +4624,10 @@ The current presentation contains no OLE objects.</value>
             <value>0</value>
           </prop>
           <prop oor:name="UIName" oor:type="xs:string">
-            <value xml:lang="en-US">Image</value>
+            <value xml:lang="en-US">Picture</value>
           </prop>
           <prop oor:name="Visible" oor:type="xs:boolean">
-            <value>false</value>
+            <value>true</value>
           </prop>
           <prop oor:name="ContextSensitive" oor:type="xs:boolean">
             <value>true</value>
@@ -4819,7 +4811,7 @@ The current presentation contains no OLE objects.</value>
         </node>
         <node oor:name="private:resource/toolbar/slideviewtoolbar" oor:op="replace">
           <prop oor:name="DockPos" oor:type="xs:string">
-            <value>1,0</value>
+            <value>0,1</value>
           </prop>
           <prop oor:name="DockingArea" oor:type="xs:int">
             <value>0</value>
@@ -4828,7 +4820,7 @@ The current presentation contains no OLE objects.</value>
             <value xml:lang="en-US">Slide Sorter</value>
           </prop>
           <prop oor:name="Visible" oor:type="xs:boolean">
-            <value>false</value>
+            <value>true</value>
           </prop>
           <prop oor:name="ContextSensitive" oor:type="xs:boolean">
             <value>true</value>
@@ -4836,7 +4828,7 @@ The current presentation contains no OLE objects.</value>
         </node>
         <node oor:name="private:resource/toolbar/slideviewobjectbar" oor:op="replace">
           <prop oor:name="DockPos" oor:type="xs:string">
-            <value>1,0</value>
+            <value>0,1</value>
           </prop>
           <prop oor:name="DockingArea" oor:type="xs:int">
             <value>0</value>
@@ -4884,7 +4876,7 @@ The current presentation contains no OLE objects.</value>
             <value>0,1</value>
           </prop>
           <prop oor:name="Visible" oor:type="xs:boolean">
-            <value>false</value>
+            <value>true</value>
           </prop>
           <prop oor:name="UIName" oor:type="xs:string">
             <value xml:lang="en-US">Text Formatting</value>
@@ -5029,14 +5021,20 @@ The current presentation contains no OLE objects.</value>
           </prop>
         </node>
         <node oor:name="private:resource/toolbar/masterviewtoolbar" oor:op="replace">
-          <prop oor:name="DockPos" oor:type="xs:string">
-            <value>2,0</value>
+          <prop oor:name="Docked" oor:type="xs:boolean">
+            <value>false</value>
           </prop>
           <prop oor:name="DockingArea" oor:type="xs:int">
             <value>0</value>
           </prop>
+          <prop oor:name="Locked" oor:type="xs:boolean">
+            <value>true</value>
+          </prop>
           <prop oor:name="Visible" oor:type="xs:boolean">
             <value>true</value>
+          </prop>
+          <prop oor:name="Pos" oor:type="xs:string">
+            <value>500,100</value>
           </prop>
           <prop oor:name="UIName" oor:type="xs:string">
             <value xml:lang="en-US">Master View</value>
@@ -5111,7 +5109,7 @@ The current presentation contains no OLE objects.</value>
           <value>sdfilt</value>
         </prop>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 97-2003</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 97/2000/XP/2003</value>
         </prop>
         <prop oor:name="FileFormatVersion">
           <value>0</value>
@@ -5134,7 +5132,7 @@ The current presentation contains no OLE objects.</value>
           <value>sdfilt</value>
         </prop>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 97-2003 AutoPlay</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 97/2000/XP/2003 AutoPlay</value>
         </prop>
         <prop oor:name="FileFormatVersion">
           <value>0</value>
@@ -5166,9 +5164,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 97-2003 Template</value>
-        </prop>
       </node>
       <node oor:name="impress_StarOffice_XML_Draw" oor:op="replace">
         <prop oor:name="Flags">
@@ -5188,9 +5183,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="TemplateName"/>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
-        </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">OpenOffice.org 1.0 Drawing (Impress)</value>
         </prop>
       </node>
       <node oor:name="OpenDocument Presentation Flat XML" oor:op="replace">
@@ -5212,7 +5204,7 @@ The current presentation contains no OLE objects.</value>
         </prop>
         <prop oor:name="TemplateName"/>
         <prop oor:name="UIName">
-          <value>Flat XML ODF Presentation</value>
+          <value>OpenDocument Presentation (Flat XML)</value>
         </prop>
         <prop oor:name="Flags">
           <value>IMPORT EXPORT OWN 3RDPARTYFILTER</value>
@@ -5237,9 +5229,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">OpenOffice.org 1.0 Presentation</value>
-        </prop>
       </node>
       <node oor:name="impress_StarOffice_XML_Impress_Template" oor:op="replace">
         <prop oor:name="Flags">
@@ -5259,9 +5248,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="TemplateName"/>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
-        </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">OpenOffice.org 1.0 Presentation Template</value>
         </prop>
       </node>
       <node oor:name="impress_pdf_Export" oor:op="replace">
@@ -5318,7 +5304,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="impress8" oor:op="replace">
         <prop oor:name="Flags">
-          <value>IMPORT EXPORT TEMPLATE OWN DEFAULT PREFERRED ENCRYPTION PASSWORDTOMODIFY</value>
+          <value>IMPORT EXPORT TEMPLATE OWN DEFAULT PREFERRED ENCRYPTION</value>
         </prop>
         <prop oor:name="UIComponent"/>
         <prop oor:name="FilterService"/>
@@ -5335,13 +5321,10 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">ODF Presentation</value>
-        </prop>
       </node>
       <node oor:name="impress8_template" oor:op="replace">
         <prop oor:name="Flags">
-          <value>IMPORT EXPORT TEMPLATE TEMPLATEPATH OWN ENCRYPTION PASSWORDTOMODIFY</value>
+          <value>IMPORT EXPORT TEMPLATE TEMPLATEPATH OWN ENCRYPTION</value>
         </prop>
         <prop oor:name="UIComponent"/>
         <prop oor:name="FilterService"/>
@@ -5358,13 +5341,10 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">ODF Presentation Template</value>
-        </prop>
       </node>
       <node oor:name="impress8_draw" oor:op="replace">
         <prop oor:name="Flags">
-          <value>IMPORT EXPORT TEMPLATE OWN ENCRYPTION PASSWORDTOMODIFY</value>
+          <value>IMPORT EXPORT TEMPLATE OWN ENCRYPTION</value>
         </prop>
         <prop oor:name="UIComponent"/>
         <prop oor:name="FilterService"/>
@@ -5380,9 +5360,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="TemplateName"/>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
-        </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">ODF Drawing (Impress)</value>
         </prop>
       </node>
       <node oor:name="Impress MS PowerPoint 2007 XML" oor:op="replace">
@@ -5402,9 +5379,6 @@ The current presentation contains no OLE objects.</value>
         <prop oor:name="DocumentService">
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML</value>
-        </prop>
       </node>
       <node oor:name="Impress MS PowerPoint 2007 XML AutoPlay" oor:op="replace">
         <prop oor:name="Flags">
@@ -5416,7 +5390,7 @@ The current presentation contains no OLE objects.</value>
         </prop>
         <prop oor:name="UserData"/>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML AutoPlay</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 2007/2010/2013 XML AutoPlay</value>
         </prop>
         <prop oor:name="FileFormatVersion"/>
         <prop oor:name="Type">
@@ -5437,7 +5411,7 @@ The current presentation contains no OLE objects.</value>
         </prop>
         <prop oor:name="UserData"/>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML Template</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 2007/2010/2013 XML Template</value>
         </prop>
         <prop oor:name="FileFormatVersion"/>
         <prop oor:name="Type">
@@ -5519,38 +5493,13 @@ The current presentation contains no OLE objects.</value>
           <value>com.sun.star.presentation.PresentationDocument</value>
         </prop>
       </node>
-      <node oor:name="ClarisWorks_Impress" oor:op="replace">
-        <prop oor:name="Flags">
-          <value>IMPORT ALIEN USESOPTIONS 3RDPARTYFILTER PREFERRED</value>
-        </prop>
-        <prop oor:name="UIComponent"/>
-        <prop oor:name="FilterService">
-          <value>com.sun.star.comp.Impress.MWAWPresentationImportFilter</value>
-        </prop>
-        <prop oor:name="UserData">
-          <value/>
-        </prop>
-        <prop oor:name="UIName">
-          <value xml:lang="en-US">ClarisWorks/AppleWorks Presentation</value>
-        </prop>
-        <prop oor:name="FileFormatVersion">
-          <value>0</value>
-        </prop>
-        <prop oor:name="Type">
-          <value>impress_ClarisWorks</value>
-        </prop>
-        <prop oor:name="TemplateName"/>
-        <prop oor:name="DocumentService">
-          <value>com.sun.star.presentation.PresentationDocument</value>
-        </prop>
-      </node>
     </node>
   </oor:component-data>
   <oor:component-data oor:package="org.openoffice.TypeDetection" oor:name="Types">
     <node oor:name="Types">
       <node oor:name="draw_StarOffice_XML_Draw" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern"/>
         <prop oor:name="Extensions">
@@ -5610,7 +5559,7 @@ The current presentation contains no OLE objects.</value>
           <value>MS PowerPoint 97</value>
         </prop>
         <prop oor:name="UIName">
-          <value>Microsoft PowerPoint 97-2003</value>
+          <value>Microsoft PowerPoint 97/2000/XP/2003</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
@@ -5632,7 +5581,7 @@ The current presentation contains no OLE objects.</value>
           <value>MS PowerPoint 97 AutoPlay</value>
         </prop>
         <prop oor:name="UIName">
-          <value>Microsoft PowerPoint 97-2003</value>
+          <value>Microsoft PowerPoint 97/2000/XP/2003</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
@@ -5684,7 +5633,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="impress_StarOffice_XML_Impress" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern"/>
         <prop oor:name="Extensions">
@@ -5708,7 +5657,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="impress_StarOffice_XML_Impress_Template" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern"/>
         <prop oor:name="Extensions">
@@ -5766,7 +5715,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="impress8" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern">
           <value>private:factory/simpress*</value>
@@ -5778,7 +5727,7 @@ The current presentation contains no OLE objects.</value>
           <value>application/vnd.oasis.opendocument.presentation</value>
         </prop>
         <prop oor:name="Preferred">
-          <value>true</value>
+          <value>false</value>
         </prop>
         <prop oor:name="PreferredFilter">
           <value>impress8</value>
@@ -5792,7 +5741,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="impress8_template" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern"/>
         <prop oor:name="Extensions">
@@ -5816,7 +5765,7 @@ The current presentation contains no OLE objects.</value>
       </node>
       <node oor:name="draw8" oor:op="replace">
         <prop oor:name="DetectService">
-          <value>com.sun.star.comp.filters.StorageFilterDetect</value>
+          <value>com.sun.star.comp.draw.FormatDetector</value>
         </prop>
         <prop oor:name="URLPattern">
           <value>private:factory/sdraw*</value>
@@ -5828,7 +5777,7 @@ The current presentation contains no OLE objects.</value>
           <value>application/vnd.oasis.opendocument.graphics</value>
         </prop>
         <prop oor:name="Preferred">
-          <value>true</value>
+          <value>false</value>
         </prop>
         <prop oor:name="PreferredFilter">
           <value>draw8</value>
@@ -5858,7 +5807,7 @@ The current presentation contains no OLE objects.</value>
           <value>Impress MS PowerPoint 2007 XML</value>
         </prop>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 2007/2010/2013 XML</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
@@ -5880,7 +5829,7 @@ The current presentation contains no OLE objects.</value>
           <value>Impress MS PowerPoint 2007 XML AutoPlay</value>
         </prop>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 2007/2010/2013 XML</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
@@ -5902,7 +5851,7 @@ The current presentation contains no OLE objects.</value>
           <value>Impress MS PowerPoint 2007 XML Template</value>
         </prop>
         <prop oor:name="UIName">
-          <value xml:lang="en-US">Microsoft PowerPoint 2007-2013 XML Template</value>
+          <value xml:lang="en-US">Microsoft PowerPoint 2007/2010/2013 XML Template</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
@@ -5969,28 +5918,6 @@ The current presentation contains no OLE objects.</value>
         </prop>
         <prop oor:name="UIName">
           <value xml:lang="en-US">Office Open XML Presentation AutoPlay</value>
-        </prop>
-        <prop oor:name="ClipboardFormat"/>
-      </node>
-      <node oor:name="impress_ClarisWorks" oor:op="replace">
-        <prop oor:name="DetectService">
-          <value>com.sun.star.comp.Impress.MWAWPresentationImportFilter</value>
-        </prop>
-        <prop oor:name="URLPattern"/>
-        <prop oor:name="Extensions">
-          <value>cwk</value>
-        </prop>
-        <prop oor:name="MediaType">
-          <value>application/clarisworks</value>
-        </prop>
-        <prop oor:name="Preferred">
-          <value>true</value>
-        </prop>
-        <prop oor:name="PreferredFilter">
-          <value>ClarisWorks_Impress</value>
-        </prop>
-        <prop oor:name="UIName">
-          <value>ClarisWorks/AppleWorks Presentation</value>
         </prop>
         <prop oor:name="ClipboardFormat"/>
       </node>
