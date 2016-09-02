@@ -308,8 +308,6 @@ class packages {
       tag => [ 'music_making', 'ubuntu', ];
 
     [ 'amtterm'
-    , 'ipsec-tools'
-    , 'racoon'
     , 'wsmancli' ]:
       tag => [ 'network', 'ubuntu', ];
 
