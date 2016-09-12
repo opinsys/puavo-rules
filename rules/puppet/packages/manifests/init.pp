@@ -79,6 +79,8 @@ class packages {
     , 'policykit-1'
     , 'pm-utils'
     , 'rng-tools'
+    , 'sssd'
+    , 'sssd-tools'
     , 'ubuntu-standard'
     , 'udev'
     , 'vlan' ]:
