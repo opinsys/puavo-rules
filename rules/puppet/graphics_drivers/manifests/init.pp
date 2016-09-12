@@ -46,7 +46,10 @@ class graphics_drivers {
 
     'nvidia':
       before         => File['/etc/modprobe.d/nvidia-304_hybrid.conf'],
-      gl_conf_target => '/usr/lib/nvidia-304/ld.so.conf',
+      gl_conf_target => $architecture ? {
+			  'amd64' => '/usr/lib/nvidia-304/alt_ld.so.conf',
+			  default => '/usr/lib/nvidia-304/ld.so.conf',
+			},
       machine        => 'i386',
       notify         => [ Driver_alternatives['mesa-i386']
                         , Driver_alternatives['mesa-amd64'] ],
