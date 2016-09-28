@@ -716,7 +716,6 @@ class packages {
     , 'puavo-hw-log'
     , 'puavo-ltsp-client'
     , 'puavo-ltsp-install'
-    , 'puavo-monitor'
     , 'puavo-vpn-client' ]:
       tag => [ 'misc', 'puavo', 'thinclient', ];
 
