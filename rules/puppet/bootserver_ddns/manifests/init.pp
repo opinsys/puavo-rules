@@ -1,4 +1,5 @@
 class bootserver_ddns {
+  include ::apparmor
 
   if $ltsp_iface_ip == undef {
     fail("ltsp_iface_ip fact is missing")
@@ -11,6 +12,12 @@ class bootserver_ddns {
   }
 
   file {
+    '/etc/apparmor.d/local/usr.sbin.dhcpd':
+      content => template('bootserver_ddns/dhcpd.apparmor'),
+      mode    => 0644,
+      notify  => Service['apparmor'],
+      require => Package['apparmor'];
+    
     '/etc/dhcp/dhcpd.conf':
       notify  => Service['isc-dhcp-server'],
       content => template('bootserver_ddns/dhcpd.conf'),
