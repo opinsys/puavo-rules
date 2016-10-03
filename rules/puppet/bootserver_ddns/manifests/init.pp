@@ -2,7 +2,7 @@ class bootserver_ddns {
   include ::apparmor
 
   if $ltsp_iface_ip == undef {
-    fail("ltsp_iface_ip fact is missing")
+    fail('ltsp_iface_ip fact is missing')
   }
 
   exec {
