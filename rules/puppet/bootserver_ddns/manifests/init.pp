@@ -24,13 +24,14 @@ class bootserver_ddns {
       require => Package['apparmor'];
     
     '/etc/dhcp/dhcpd.conf':
-      notify  => Service['isc-dhcp-server'],
       content => template('bootserver_ddns/dhcpd.conf'),
+      notify  => Service['isc-dhcp-server'],
       require => [ Package['isc-dhcp-server']
                  , Exec['ensure ubnt.conf exists'] ];
+
     '/etc/dnsmasq.conf':
-      notify  => Service['dnsmasq'],
       content => template('bootserver_ddns/dnsmasq.conf'),
+      notify  => Service['dnsmasq'],
       require => Package['dnsmasq'];
   }
   
