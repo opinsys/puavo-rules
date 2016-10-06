@@ -2,10 +2,15 @@
 
 set -eu
 
-external_file=/state/external_files/menu.json
+external_file_menu_json=/state/external_files/menu.json
+external_file_menu_yaml=/state/external_files/menu.yaml
 
-if [ ! -f "${external_file}" ]; then
-    exit 0
+# menu.yaml is preferred
+if [ -e "${external_file_menu_yaml}" ]; then
+    install -b -m 644 -T "${external_file_menu_yaml}" /etc/webmenu/menu.yaml
+    rm -f /etc/webmenu/menu.json
+elif [ -e "${external_file_menu_json}" ]; then
+    install -b -m 644 -T "${external_file_menu_json}" /etc/webmenu/menu.json
+    # this must be done so that menu.json becomes effective:
+    rm -f /etc/webmenu/menu.yaml
 fi
-
-install -m 644 -T "${external_file}" /etc/webmenu/menu.json
