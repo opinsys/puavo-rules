@@ -586,13 +586,14 @@ items:
     url: http://sanomapro.fi/
     osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
   - type: web
+    name: Otava - Oppilaan maailma
+    url: https://oppilas.otava.fi/
+    osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
+  - type: web
     name: Ekapeli (websivu)
     url: http://www.lukimat.fi/lukeminen/materiaalit/ekapeli
     osIconPath: /usr/share/icons/Faenza/categories/96/gnome-joystick.png
     condition: "!env.PUAVO_PERSONALLY_ADMINISTERED"
-  - source: netflix
-    type: desktop
-    inactiveByDeviceType: thinclient
   - type: web
     name: Edison
     url: http://app.edison.fi
@@ -605,6 +606,9 @@ items:
     name: Viope
     url: https://www.viope.com/
     osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
+  - source: netflix
+    type: desktop
+    inactiveByDeviceType: thinclient
 - source: nautilus-home
   type: desktop
 - type: custom
