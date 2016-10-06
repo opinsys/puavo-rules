@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -eu
+
+module=$1
+
+modprobe "${module}"
+
+grep -q "^${module}" /etc/modules || {
+     echo "${module}" >> /etc/modules
+}
