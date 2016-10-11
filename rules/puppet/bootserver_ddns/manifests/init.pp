@@ -35,9 +35,14 @@ class bootserver_ddns {
     }
   }
 
-  define scriptfile() {
+  define scriptfile($type) {
+    case $type {
+      'lib', 'bin', 'sbin': { }
+      default             : { fail('type must be lib, bin or sbin') }
+    }
+
     file {
-        "/usr/local/lib/${title}":
+        "/usr/local/${type}/${title}":
           content => template("bootserver_ddns/${title}"),
           mode    => 0755;
     }
@@ -47,7 +52,7 @@ class bootserver_ddns {
     [ 'create-dummy-ubnt-conf'
     , 'create-ddns-key'
     , 'reset-zone']:
-      ;
+      type => 'lib';
   }
 
   ::bootserver_ddns::zonefile {
