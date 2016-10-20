@@ -1,4 +1,6 @@
 class bootserver_ntp {
+  include puavo
+
   file {
     '/etc/ntp.conf':
       content => template('bootserver_ntp/ntp.conf'),
