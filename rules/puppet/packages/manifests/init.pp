@@ -94,6 +94,7 @@ class packages {
     , 'lightdm-gtk-greeter'
     , 'lsb-invalid-mta'
     , 'network-manager-openvpn-gnome'
+    , 'network-manager-vpnc-gnome'
     , 'notify-osd'
     , 'onboard'
     , 'overlay-scrollbar'               # needed by accessibility stuff
