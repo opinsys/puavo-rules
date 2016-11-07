@@ -318,6 +318,7 @@ class packages {
     , 'fbreader'
     , 'libreoffice'
     , 'libreoffice-base'
+    , 'libreoffice-kde'
     , 'scribus'
     , 'scribus-doc'
     , 'tellico'
