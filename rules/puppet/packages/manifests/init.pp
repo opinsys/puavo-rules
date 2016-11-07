@@ -180,7 +180,6 @@ class packages {
     , 'ktuberling'
     , 'kwordquiz'
     , 'laby'
-    , 'lincity-ng'
     , 'luola'
     , 'neverball'
     , 'neverputt'
