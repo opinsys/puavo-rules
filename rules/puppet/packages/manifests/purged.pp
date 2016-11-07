@@ -12,6 +12,10 @@ class packages::purged {
     # (runs dpkg-query without speed considerations)
     , 'im-config'
 
+    , 'lilypond-doc'
+    , 'lilypond-doc-html'
+    , 'lilypond-doc-pdf'
+
     , 'linux-image-generic'             # we want to choose kernels explicitly
 
     , 'samba'				# not needed, gets into system as
@@ -19,6 +23,15 @@ class packages::purged {
 
     , 'software-properties-gtk'
     , 'synaptic'
+
+    , 'texlive-fonts-extra-doc'
+    , 'texlive-fonts-recommended-doc'
+    , 'texlive-latex-base-doc'
+    , 'texlive-latex-extra-doc'
+    , 'texlive-latex-recommended-doc'
+    , 'texlive-pictures-doc'
+    , 'texlive-pstricks-doc'
+
     , 'ubuntu-release-upgrader-core'
 
     , 'tftpd-hpa'               # this is suggested by ltsp-server, but
