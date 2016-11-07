@@ -638,7 +638,6 @@ class packages {
     , 'xdg-user-dirs-gtk'
     , 'xdg-utils'
     , 'xdiagnose'
-    , 'xfce4'
     , 'xkb-data'
     , 'xorg'
     , 'xterm'
