@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -eu
+
+status=1
+targetpath=/usr/lib/adobe-flashplugin/libpepflashplayer-amd64.so
+
+apt-get install --download-only adobe-flashplugin
+
+for deb in /var/cache/apt/archives/adobe-flashplugin_*_amd64.deb; do
+  test -e "$deb" || continue
+
+  dpkg-deb --fsys-tarfile "$deb" \
+    | tar -Ox ./usr/lib/adobe-flashplugin/libpepflashplayer.so \
+    > "${targetpath}.tmp"
+
+  if [ -s "${targetpath}.tmp" ]; then
+    mv "${targetpath}.tmp" "$targetpath"
+    status=0
+    break
+  else
+    rm -f "${targetpath}.tmp"
+  fi
+done
+
+exit $status
