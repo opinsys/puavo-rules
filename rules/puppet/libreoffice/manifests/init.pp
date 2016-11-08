@@ -6,6 +6,6 @@ class libreoffice {
   # an annoying bug in the GTK-libraries in Ubuntu Trusty.
   file {
     '/etc/X11/Xsession.d/42puavo-setup-libreoffice':
-      content => "SAL_USE_VCLPLUGIN=kde\n";
+      content => "SAL_USE_VCLPLUGIN=kde\nexport SAL_USE_VCLPLUGIN\n";
   }
 }
