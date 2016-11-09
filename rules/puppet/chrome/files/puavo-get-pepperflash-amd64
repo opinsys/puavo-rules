@@ -5,7 +5,7 @@ set -eu
 status=1
 targetpath=/usr/lib/adobe-flashplugin/libpepflashplayer-amd64.so
 
-apt-get install --download-only adobe-flashplugin
+apt-get install --download-only -y adobe-flashplugin:amd64
 
 for deb in /var/cache/apt/archives/adobe-flashplugin_*_amd64.deb; do
   test -e "$deb" || continue
@@ -19,8 +19,13 @@ for deb in /var/cache/apt/archives/adobe-flashplugin_*_amd64.deb; do
     status=0
     break
   else
+    echo "Failed to extract libpepflashplayer.so from $deb" >&2
     rm -f "${targetpath}.tmp"
   fi
 done
+
+if [ "$status" -eq 1 ]; then
+  echo 'Could not find flashplugin from any adobe-flashplugin package' >&2
+fi
 
 exit $status
