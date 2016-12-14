@@ -5,8 +5,8 @@ class packages::purged {
   Package { ensure => purged, }
 
   @package {
-    # the functionality in these is not for our end users
-    [ 'gnome-media'			# broken software
+    [ 'cups-pk-helper'		# we do not need this, and it has bugs
+    , 'gnome-media'		# broken software
 
     # slows down login considerably
     # (runs dpkg-query without speed considerations)
@@ -21,6 +21,7 @@ class packages::purged {
     , 'samba'				# not needed, gets into system as
 					# some recommendation through winbind
 
+    # the functionality in these is not for our end users
     , 'software-properties-gtk'
     , 'synaptic'
 
