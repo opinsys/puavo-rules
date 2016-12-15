@@ -1,5 +1,6 @@
 class chromium {
-  include dpkg,
+  include chromium::office365_tweaks,
+          dpkg,
           packages
 
   dpkg::simpledivert { '/usr/bin/chromium-browser': ; }
