@@ -17,6 +17,10 @@ class chromium {
     }
   }
 
+  # this installs extensions "User-Agent Switcher for Chrome" (for
+  # "chromium::office365_tweaks"), and "Google Cast for Education".
+  chromium::install_policy { 'extension_install_forcelist': ; }
+
   dpkg::simpledivert { '/usr/bin/chromium-browser': ; }
 
   file {
