@@ -1,5 +1,6 @@
 class image::bundle::desktop {
   include acroread,
+          chromium,
           crash_reporting,
           ::desktop,
           disable_accounts_service,
