@@ -21,6 +21,9 @@ class chromium {
   # "chromium::office365_tweaks"), and "Google Cast for Education".
   chromium::install_policy { 'extension_install_forcelist': ; }
 
+  # configuration for Puavo single sign-on
+  chromium::install_policy { 'puavo-sso': ; }
+
   dpkg::simpledivert { '/usr/bin/chromium-browser': ; }
 
   file {
