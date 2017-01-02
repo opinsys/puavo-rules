@@ -4,12 +4,12 @@ class graphics_stack_hacks::trusty_xorg_intel {
 
   graphics_stack_hacks::download_alternative_deb {
     'xserver-xorg-input-synaptics_1.7.4':
-      file    => 'xserver-xorg-input-synaptics_1.7.4-0ubuntu1_i386.deb',
-      urlbase => 'http://mirror.opinsys.fi/pool/main/x/xserver-xorg-input-synaptics';
+      file    => '/xserver-xorg-input-synaptics_1.7.4-0ubuntu1_i386.deb',
+      urlbase => 'http://archive.opinsys.fi/altdebs/pool/trusty/main/x/xserver-xorg-input-synaptics';
 
     'xserver-xorg-video-intel_2.99.910':
       file    => '/xserver-xorg-video-intel_2.99.910-0ubuntu1.6_i386.deb',
-      urlbase => 'http://mirror.opinsys.fi/pool/main/x/xserver-xorg-video-intel';
+      urlbase => 'http://archive.opinsys.fi/altdebs/pool/trusty/main/x/xserver-xorg-video-intel';
   }
 
   file {
