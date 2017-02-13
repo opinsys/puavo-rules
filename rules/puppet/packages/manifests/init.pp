@@ -72,6 +72,7 @@ class packages {
     , 'bridge-utils'
     , 'gdebi-core'
     , 'grub-pc'
+    , 'libfuse2:amd64'
     , 'lvm2'
     , 'nfs-common'
     , 'openssh-client'
