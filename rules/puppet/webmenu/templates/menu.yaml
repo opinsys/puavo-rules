@@ -202,6 +202,10 @@ items:
   - source: robboscratch2
     type: desktop
     inactiveByDeviceType: thinclient
+  - type: custom
+    name: Appinventor USB
+    command: "xterm /usr/google/appinventor/commands-for-Appinventor/aiStarter"
+    osIconPath: /usr/share/icons/Faenza/devices/96/drive-removable-media-usb.png
 - type: menu
   name:
     en: Education
