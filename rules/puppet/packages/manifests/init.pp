@@ -72,7 +72,6 @@ class packages {
     , 'bridge-utils'
     , 'gdebi-core'
     , 'grub-pc'
-    , 'libfuse2:amd64'
     , 'lvm2'
     , 'nfs-common'
     , 'openssh-client'
@@ -944,5 +943,11 @@ class packages {
     , 'libxxf86vm1:amd64'
     , 'libxslt1.1:amd64' ]:
       tag => [ '64bitdropbox', 'ubuntu', ];
+  }
+
+  # dependency needed by Cura 2.4.0 slicing app
+  @package {
+    'libfuse2:amd64':
+      tag => [ 'ubuntu', ];
   }
 }
