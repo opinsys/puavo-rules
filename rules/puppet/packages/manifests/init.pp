@@ -708,6 +708,9 @@ class packages {
     , 'puavo-devscripts' ]:
       tag => [ 'devel', 'puavo', ];
 
+    [ 'mattermost-desktop' ]:
+      tag => [ 'instant_messaging', 'puavo', ];
+
     [ 'autopoweroff'
     , 'ltsp-client'
     , 'opinsys-ca-certificates'
