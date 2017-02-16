@@ -1,6 +1,5 @@
 class libreoffice {
   include libreoffice::config,
-	  libreoffice::default_formats,
 	  packages
 
   # Use the KDE-interface by default, because Libreoffice 5 reveals
