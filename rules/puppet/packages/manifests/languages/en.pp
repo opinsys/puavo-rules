@@ -12,7 +12,6 @@ class packages::languages::en {
     , 'libreoffice5.3-en-gb'
     , 'libreoffice5.3-en-us'
     , 'myspell-en-gb'
-    , 'mythes-en-us'
     , 'thunderbird-locale-en-gb' ]:
       tag => [ 'language-en', 'ubuntu', ];
   }

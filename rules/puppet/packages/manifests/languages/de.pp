@@ -13,8 +13,6 @@ class packages::languages::de {
     , 'libreoffice5.3-dict-de'
     , 'myspell-de-ch'
     , 'myspell-de-de'
-    , 'mythes-de'
-    , 'mythes-de-ch'
     , 'thunderbird-locale-de' ]:
       tag => [ 'language-de', 'ubuntu', ];
   }

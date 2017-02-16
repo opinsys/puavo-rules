@@ -11,7 +11,6 @@ class packages::languages::sv {
     , 'libreoffice5.3-dict-sv'
     , 'libreoffice5.3-sv'
     , 'myspell-sv-se'
-    , 'mythes-sv'
     , 'thunderbird-locale-sv' ]:
       tag => [ 'language-sv', 'ubuntu', ];
   }
