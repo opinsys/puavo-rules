@@ -1,4 +1,5 @@
 class libreoffice {
+  include libreoffice::voikko
   include packages
 
   file {
