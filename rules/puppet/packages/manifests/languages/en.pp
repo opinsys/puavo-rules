@@ -8,9 +8,9 @@ class packages::languages::en {
     , 'kde-l10n-engb'
     , 'language-pack-en'
     , 'language-pack-kde-en'
-    , 'libreoffice-help-en-gb'
-    , 'libreoffice-l10n-en-gb'
-    , 'libreoffice-l10n-en-za'
+    , 'libreoffice5.3-dict-en'
+    , 'libreoffice5.3-en-gb'
+    , 'libreoffice5.3-en-us'
     , 'myspell-en-gb'
     , 'mythes-en-us'
     , 'thunderbird-locale-en-gb' ]:

@@ -8,8 +8,8 @@ class packages::languages::sv {
     , 'kde-l10n-sv'
     , 'language-pack-kde-sv'
     , 'language-pack-sv'
-    , 'libreoffice-help-sv'
-    , 'libreoffice-l10n-sv'
+    , 'libreoffice5.3-dict-sv'
+    , 'libreoffice5.3-sv'
     , 'myspell-sv-se'
     , 'mythes-sv'
     , 'thunderbird-locale-sv' ]:

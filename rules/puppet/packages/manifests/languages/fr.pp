@@ -9,8 +9,8 @@ class packages::languages::fr {
     , 'kde-l10n-fr'
     , 'language-pack-fr'
     , 'language-pack-kde-fr'
-    , 'libreoffice-help-fr'
-    , 'libreoffice-l10n-fr'
+    , 'libreoffice5.3-dict-fr'
+    , 'libreoffice5.3-fr'
     , 'myspell-fr'
     , 'mythes-fr'
     , 'thunderbird-locale-fr' ]:

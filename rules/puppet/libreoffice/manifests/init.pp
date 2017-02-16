@@ -5,8 +5,8 @@ class libreoffice {
     '/etc/puavo-external-files-actions.d/libreoffice':
       content => template('libreoffice/puavo-external-files-actions.d/libreoffice'),
       mode    => 755,
-      require => Package['libreoffice-writer'];
+      require => Package['libreoffice5.3-writer'];
   }
 
-  Package <| tag == libreoffice-writer |>
+  Package <| tag == "libreoffice5.3-writer" |>
 }

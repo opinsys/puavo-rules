@@ -9,7 +9,6 @@ class packages::languages::ar {
     , 'kde-l10n-ar'
     , 'language-pack-gnome-ar'
     , 'language-pack-kde-ar'
-    , 'libreoffice-l10n-ar'
     , 'thunderbird-locale-ar' ]:
       tag => [ 'language-ar', 'ubuntu', ];
 
