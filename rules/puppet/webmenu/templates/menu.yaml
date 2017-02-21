@@ -309,7 +309,7 @@ items:
     type: desktop
   - source: libreoffice5.3-calc
     type: desktop
-  - source: libreoffice5-3-impress
+  - source: libreoffice5.3-impress
     type: desktop
   - source: libreoffice5.3-draw
     type: desktop
