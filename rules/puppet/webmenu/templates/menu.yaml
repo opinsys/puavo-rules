@@ -305,17 +305,17 @@ items:
     de: Büroprogramme
   osIcon: applications-office
   items:
-  - source: libreoffice5.3-writer
+  - source: libreoffice5.2-writer
     type: desktop
-  - source: libreoffice5.3-calc
+  - source: libreoffice5.2-calc
     type: desktop
-  - source: libreoffice5.3-impress
+  - source: libreoffice5.2-impress
     type: desktop
-  - source: libreoffice5.3-draw
+  - source: libreoffice5.2-draw
     type: desktop
-  - source: libreoffice5.3-base
+  - source: libreoffice5.2-base
     type: desktop
-  - source: libreoffice5.3-math
+  - source: libreoffice5.2-math
     type: desktop
   - source: scribus
     type: desktop
@@ -495,17 +495,17 @@ items:
     type: desktop
   - source: dia
     type: desktop
-  - source: libreoffice5.3-writer
+  - source: libreoffice5.2-writer
     type: desktop
-  - source: libreoffice5.3-calc
+  - source: libreoffice5.2-calc
     type: desktop
-  - source: libreoffice5.3-impress
+  - source: libreoffice5.2-impress
     type: desktop
-  - source: libreoffice5.3-draw
+  - source: libreoffice5.2-draw
     type: desktop
-  - source: libreoffice5.3-base
+  - source: libreoffice5.2-base
     type: desktop
-  - source: libreoffice5.3-math
+  - source: libreoffice5.2-math
     type: desktop
 - type: menu
   name:
