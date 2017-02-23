@@ -315,7 +315,8 @@ class packages {
 
     [ 'calibre'
     , 'fbreader'
-    , 'libreoffice-voikko'	# XXX how to install without libreoffice?
+    , 'libreoffice-voikko'	# package is modified to lack dependencies
+    , 'openclipart-libreoffice'
     , 'scribus'
     , 'scribus-doc'
     , 'tellico'

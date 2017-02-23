@@ -1,4 +1,5 @@
 class libreoffice {
+  include libreoffice::openclipart
   include libreoffice::voikko
   include packages
 
