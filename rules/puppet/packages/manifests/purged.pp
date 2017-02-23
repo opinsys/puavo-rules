@@ -21,6 +21,30 @@ class packages::purged {
     , 'samba'				# not needed, gets into system as
 					# some recommendation through winbind
 
+    # we use the upstream packages for Libreoffice, not the Ubuntu ones
+    , 'libreoffice'
+    , 'libreoffice-avmedia-backend-gstreamer'
+    , 'libreoffice-base'
+    , 'libreoffice-base-core'
+    , 'libreoffice-base-drivers'
+    , 'libreoffice-calc'
+    , 'libreoffice-common'
+    , 'libreoffice-core'
+    , 'libreoffice-draw'
+    , 'libreoffice-gnome'
+    , 'libreoffice-gtk'
+    , 'libreoffice-impress'
+    , 'libreoffice-java-common'
+    , 'libreoffice-math'
+    , 'libreoffice-pdfimport'
+    , 'libreoffice-report-builder-bin'
+    , 'libreoffice-sdbc-firebird'
+    , 'libreoffice-sdbc-hsqldb'
+    , 'libreoffice-style-galaxy'
+    , 'libreoffice-style-human'
+    , 'libreoffice-writer'
+    , 'python3-uno'
+
     # the functionality in these is not for our end users
     , 'software-properties-gtk'
     , 'synaptic'
