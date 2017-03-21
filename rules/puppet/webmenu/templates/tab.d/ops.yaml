@@ -117,6 +117,9 @@ items:
      fi: Maantieto
    osIcon: /usr/share/tuxpaint/stamps/space/planets/3_earth.png
    items:
+    - source: google-earth
+      type: desktop
+      inactiveByDeviceType: thinclient
     - type: desktop
       source: marble
     - type: desktop
