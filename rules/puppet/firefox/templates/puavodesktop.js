@@ -8,6 +8,7 @@ lockPref("browser.search.showOneOffButtons", false);
 lockPref("extensions.blocklist.enabled", false);
 lockPref("network.dns.disableIPv6", true);
 lockPref("network.seer.enabled", false);
+lockPref("plugin.load_flash_only", false);
 lockPref("print.postscript.paper_size", "iso_a4");
 lockPref("toolkit.storage.synchronous", 1);
 lockPref("xpinstall.signatures.required", false);
