@@ -719,7 +719,7 @@ class packages {
     , 'libobasis5.2-librelogo'
     , 'libobasis5.2-math'
     , 'libobasis5.2-ogltrans'
-    , 'libobasis5.2-onlineupdate'
+    # , 'libobasis5.2-onlineupdate'	# this we do not want
     , 'libobasis5.2-ooofonts'
     , 'libobasis5.2-ooolinguistic'
     , 'libobasis5.2-postgresql-sdbc'
