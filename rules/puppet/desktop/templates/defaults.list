@@ -190,6 +190,7 @@ text/comma-separated-values=libreoffice5.2-calc.desktop
 text/csv=libreoffice5.2-calc.desktop
 text/html=firefox.desktop
 text/plain=gedit.desktop
+text/racket=drracket.desktop
 text/richtext=abiword.desktop
 text/rtf=libreoffice5.2-writer.desktop
 text/spreadsheet=libreoffice5.2-calc.desktop
