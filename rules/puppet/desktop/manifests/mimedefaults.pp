@@ -19,7 +19,7 @@ class desktop::mimedefaults {
 
   file {
     '/usr/share/mime/packages/drracket.xml':
-       content => 'puppet:///modules/desktop/drracket.xml',
+       source => 'puppet:///modules/desktop/drracket.xml',
        notify  => Exec['desktop-update-mime-database'];
   }
 
