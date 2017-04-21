@@ -8,19 +8,15 @@ class desktop::mimedefaults {
   }
 
   file {
-    '/usr/share/applications/defaults.list':
-       content => template('desktop/defaults.list');
-  }
-
-  file {
     '/etc/gnome/defaults.list':
        content => template('desktop/defaults.list');
-  }
 
-  file {
+    '/usr/share/applications/defaults.list':
+       content => template('desktop/defaults.list');
+
     '/usr/share/mime/packages/drracket.xml':
-       source => 'puppet:///modules/desktop/drracket.xml',
-       notify  => Exec['desktop-update-mime-database'];
+       notify => Exec['desktop-update-mime-database'],
+       source => 'puppet:///modules/desktop/drracket.xml';
   }
 
   Package <| title == desktop-file-utils |>
