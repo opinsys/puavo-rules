@@ -976,6 +976,16 @@ class packages {
       tag => [ '64bitdropbox', 'ubuntu', ];
   }
 
+  # Skype requires these additional 64-bit libraries.
+  @package {
+    [ 'apt-transport-https:amd64'
+    , 'libapt-pkg4.12:amd64'
+    , 'libbz2-1.0:amd64'
+    , 'libcurl3-gnutls:amd64'
+    , 'libsecret-1-0:amd64' ]:
+      tag => [ 'skype', 'ubuntu', ];
+  }
+
   # dependency needed by Cura 2.4.0 slicing app
   @package {
     'libfuse2:amd64':
