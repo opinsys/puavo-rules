@@ -63,20 +63,24 @@ class nagios {
       tag     => [ 'bootserver', ];
   }
 
+  $plugin_packages = $lsbdistcodename ? {
+			'precise' => [ 'nagios-nrpe-server'
+				     , 'nagios-plugins'
+				     , 'nagios-plugins-basic'
+				     , 'nagios-plugins-extra'
+				     , 'nagios-plugins-standard' ],
+			default   => [ 'nagios-nrpe-server'
+				     , 'nagios-plugins'
+				     , 'nagios-plugins-basic'
+				     , 'nagios-plugins-common'
+				     , 'nagios-plugins-contrib'
+				     , 'nagios-plugins-extra'
+				     , 'nagios-plugins-standard' ],
+		     }
+
   package {
-    [ 'nagios-nrpe-server'
-    , 'nagios-plugins-basic'
-    , 'nagios-plugins-common'
-    , 'nagios-plugins-standard' ]:
+    $plugin_packages:
       ensure => present;
-  }
-
-
-  if $lsbdistcodename != 'precise' {
-    package {
-      'nagios-plugins-contrib':
-        ensure => present;
-    }
   }
 
   service {
