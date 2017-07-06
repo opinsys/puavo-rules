@@ -1,1 +1,2 @@
 from="<%= scope.lookupvar('bootserver_config::backup_server1_ip') %>,<%= scope.lookupvar('bootserver_config::backup_server2_ip') %>",command="/root/run-rdiff-backup-server" <%= scope.lookupvar('bootserver_config::backup_ssh_pubkey') %>
+from="<%= scope.lookupvar('bootserver_config::zfsbackup_server1_ip') %>",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,command="/usr/local/sbin/run-rsync-backup-server" <%= scope.lookupvar('bootserver_config::zfsbackup_ssh_pubkey') %>

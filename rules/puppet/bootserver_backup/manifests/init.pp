@@ -13,5 +13,9 @@ class bootserver_backup {
     '/root/run-rdiff-backup-server':
       content => template('bootserver_backup/run-rdiff-backup-server'),
       mode    => 700;
+
+    '/usr/local/sbin/run-rsync-backup-server':
+      content => template('bootserver_backup/run-rsync-backup-server'),
+      mode    => 700;
   }
 }
