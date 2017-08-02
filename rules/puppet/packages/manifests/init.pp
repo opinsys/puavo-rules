@@ -790,9 +790,6 @@ class packages {
   #
 
   @package {
-    [ 'skype' ]:
-      tag => [ 'instant_messaging', 'partner', 'extra', 'restricted' ];
-
     [ 'vmware-view-client' ]:
       tag => [ 'remote_access', 'partner', 'restricted' ];
 
