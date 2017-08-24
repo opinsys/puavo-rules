@@ -24,6 +24,7 @@ class chromium {
   # configuration for Puavo single sign-on
   chromium::install_policy { 'puavo-sso': ; }
 
+  # configuration allow sites to automatically run the Flash plugin
   chromium::install_policy { 'flash_tweaks': ; }
 
   dpkg::simpledivert { '/usr/bin/chromium-browser': ; }
