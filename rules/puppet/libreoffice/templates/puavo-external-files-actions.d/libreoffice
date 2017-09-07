@@ -32,4 +32,4 @@ mkdir -p "${fontdir}"
 
 mv -t "${fontdir}" ${tmpdir}/fonts/*.TTF
 
-/usr/lib/libreoffice/program/unopkg add --shared "${tmpdir}/sujutellaan.oxt"
+/opt/libreoffice5.2/program/unopkg add --shared "${tmpdir}/sujutellaan.oxt"
