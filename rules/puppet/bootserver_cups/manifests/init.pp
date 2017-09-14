@@ -34,6 +34,11 @@ class bootserver_cups {
       notify  => Service['cups-watchdog'];
   }
 
+  package {
+    'cups-browsed':
+      ensure => purged;
+  }
+
   service {
     [ 'cups'
     , 'cups-watchdog' ]:
