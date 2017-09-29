@@ -441,11 +441,11 @@ items:
   osIcon: applications-cardgames
   condition: "!env.PUAVO_PERSONALLY_ADMINISTERED"
   items:
-  - source: gnome-klotski
+  - source: gnotski
     type: desktop
-  - source: gnome-mines
+  - source: gnomine
     type: desktop
-  - source: gnome-mahjongg
+  - source: mahjongg
     type: desktop
   - source: sol
     type: desktop  
