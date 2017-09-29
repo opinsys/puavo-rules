@@ -25,6 +25,15 @@ items:
         sv: YouTube
         de: YouTube
       osIconPath: /usr/share/icons/Faenza/apps/96/youtube.png
+    - type: web
+      name: PhET Simulations Web
+      url: https://phet.colorado.edu/en/simulations/category/physics
+      description:
+        en: PhET physics simulations
+        fi: PhET fysiikkasimulaatiot
+        sv: PhET web
+        de: PhET web
+      osIconPath: /usr/share/icons/Faenza/categories/96/applications-internet.png
  - type: menu
    name:
      en: Chemistry
@@ -87,6 +96,14 @@ items:
     - type: desktop
       source: scratch
       inactiveByDeviceType: thinclient
+    - type: web
+      name: Scratch-klubi
+      url: http://www.teromakotero.fi/scratch-klubi/
+      osIconPath: /usr/share/icons/Human/scalable/categories/xfce-internet.svg
+    - type: web
+      name: Python-klubi
+      url: http://www.teromakotero.fi/python-klubi/
+      osIconPath: /usr/share/icons/Human/scalable/categories/xfce-internet.svg
     - type: desktop
       source: kturtle
     - type: desktop
