@@ -441,6 +441,16 @@ items:
   osIcon: applications-cardgames
   condition: "!env.PUAVO_PERSONALLY_ADMINISTERED"
   items:
+  - source: gnome-klotski
+    type: desktop
+  - source: gnome-mines
+    type: desktop
+  - source: gnome-mahjongg
+    type: desktop
+  - source: sol
+    type: desktop  
+  - source: gnome-sudoku
+    type: desktop
   - source: gnubg
     type: desktop
 - type: menu
