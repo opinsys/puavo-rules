@@ -9,6 +9,7 @@ class image::bundle::desktop {
           fontconfig,
           gnome_terminal,
           graphics_drivers,
+          ibus,
           image::bundle::basic,
           kaffeine,
           keyutils,
