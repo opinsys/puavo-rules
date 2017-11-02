@@ -126,7 +126,7 @@ items:
   - source: google-earth
     type: desktop
     inactiveByDeviceType: thinclient
-  - source: skype
+  - source: skypeforlinux
     type: desktop
   - source: empathy
     type: desktop
