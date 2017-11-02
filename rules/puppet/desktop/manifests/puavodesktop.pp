@@ -33,6 +33,9 @@ class desktop::puavodesktop {
       ensure  => link,
       require => Package['faenza-icon-theme'],
       target  => 'evolution-calendar.png';
+
+    '/usr/share/backgrounds/puavo-greeter/':
+      source  => 'puppet:///modules/desktop/opinsysos-update-info-fi.jpg';
   }
 
   Package <| title == faenza-icon-theme
