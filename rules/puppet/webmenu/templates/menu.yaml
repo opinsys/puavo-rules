@@ -611,6 +611,10 @@ items:
     url: http://pahvidemo.opinsys.fi/
     osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
   - type: web
+    name: Peda.net
+    url: https://peda.net/:loginopinsys
+    osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
+  - type: web
     name: SanomaPro
     url: http://sanomapro.fi/
     osIconPath: /usr/share/icons/Faenza/mimetypes/96/text-html.png
