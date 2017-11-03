@@ -642,7 +642,8 @@ class packages {
     , 'zsync' ]:
       tag => [ 'ubuntu-gnome-desktop', 'ubuntu', ];
 
-    [ 'bindfs'
+    [ 'anki'
+    , 'bindfs'
     , 'desktop-file-utils'
     , 'devilspie'
     , 'duplicity'
