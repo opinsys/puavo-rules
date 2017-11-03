@@ -978,6 +978,7 @@ class packages {
   # Skype requires these additional 64-bit libraries.
   @package {
     [ 'apt-transport-https:amd64'
+    , 'libasound2-plugins:amd64'
     , 'libapt-pkg4.12:amd64'
     , 'libbz2-1.0:amd64'
     , 'libcurl3-gnutls:amd64'
