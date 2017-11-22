@@ -991,4 +991,11 @@ class packages {
     'libfuse2:amd64':
       tag => [ 'ubuntu', ];
   }
+
+  # Choregraphe
+  @package {
+    [ 'libxt6:amd64'
+    , 'libxaw7:amd64' ]:
+      tag => [ '64bitchoregraphe', 'ubuntu', ];
+  }
 }
