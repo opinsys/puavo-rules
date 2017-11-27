@@ -982,7 +982,9 @@ class packages {
     , 'libapt-pkg4.12:amd64'
     , 'libbz2-1.0:amd64'
     , 'libcurl3-gnutls:amd64'
-    , 'libsecret-1-0:amd64' ]:
+    , 'libsecret-1-0:amd64'
+    , 'libv4l-0:amd64'
+    , 'libv4lconvert0:amd64' ]:
       tag => [ 'skype', 'ubuntu', ];
   }
 
