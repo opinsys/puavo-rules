@@ -61,12 +61,34 @@ if [ -z "$api_server" ]; then
   api_server=$(puavo-resolve-api-server)
 fi
 
-curl -X POST                                                         \
-     --header      'Authorization: Bootserver'                       \
-     --form        'key_secret=</etc/dhcp/ddns-keys/ddns-key.secret' \
-     --form-string 'key_name=ddns-key'                               \
-     --form-string "type=${type}"                                    \
-     --form-string "client_mac=${client_mac}"                        \
-     --form-string "client_ip=${client_ip}"                          \
-     --form-string "subdomain=${subdomain}"                          \
-     "${api_server}/v3/bootserver_dns_update"
+nsupdate_keyfile_path='/etc/dhcp/ddns-keys/nsupdate.key'
+
+# XXX Should this be simpler?  Maybe less parsing for this script?
+
+key_name=$(awk '$1 == "key" {
+             gsub(/^"/, "", $2); gsub(/"$/, "", $2); print $2; exit(0)
+           }' "$nsupdate_keyfile_path")
+key_secret=$(awk '$1 == "secret" {
+               gsub(/^"/, "", $2); gsub(/";?$/, "", $2); print $2; exit(0)
+             }' "$nsupdate_keyfile_path")
+
+if [ -z "$key_name" ]; then
+  echo 'Could not read key name from /etc/dhcp/ddns-keys/nsupdate.key' >&2
+  exit 1
+fi
+
+if [ -z "$key_secret" ]; then
+  echo 'Could not read secret from /etc/dhcp/ddns-keys/nsupdate.key' >&2
+  exit 1
+fi
+
+printf %s "$key_secret" \
+  | curl -X POST                                   \
+         --header      'Authorization: Bootserver' \
+         --form        'key_secret=<-'             \
+         --form-string "key_name=${key_name}"      \
+         --form-string "type=${type}"              \
+         --form-string "client_mac=${client_mac}"  \
+         --form-string "client_ip=${client_ip}"    \
+         --form-string "subdomain=${subdomain}"    \
+         "${api_server}/v3/bootserver_dns_update"
