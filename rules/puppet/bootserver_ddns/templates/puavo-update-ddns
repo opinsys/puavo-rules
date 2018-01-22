@@ -47,9 +47,11 @@
 #
 #
 
-# XXX should use --ca-cert and such!
-
 set -eu
+
+logmsg() {
+  logger -s -t puavo-update-ddns "$@"
+}
 
 type=$1
 client_mac=$2
@@ -58,12 +60,10 @@ subdomain=$4
 api_server=${5:-}
 
 if [ -z "$api_server" ]; then
-  api_server=$(puavo-resolve-api-server)
+  api_server=$(puavo-resolve-api-server 2>/dev/null || true)
 fi
 
 nsupdate_keyfile_path='/etc/dhcp/ddns-keys/nsupdate.key'
-
-# XXX Should this be simpler?  Maybe less parsing for this script?
 
 key_name=$(awk '$1 == "key" {
              gsub(/^"/, "", $2); gsub(/"$/, "", $2); print $2; exit(0)
@@ -72,24 +72,41 @@ key_secret=$(awk '$1 == "secret" {
                gsub(/^"/, "", $2); gsub(/";?$/, "", $2); print $2; exit(0)
              }' "$nsupdate_keyfile_path")
 
+url="${api_server}/v3/bootserver_dns_update"
+
 if [ -z "$key_name" ]; then
-  echo 'Could not read key name from /etc/dhcp/ddns-keys/nsupdate.key' >&2
+  logmsg -p user.err \
+         'could not read key name from /etc/dhcp/ddns-keys/nsupdate.key'
   exit 1
 fi
 
 if [ -z "$key_secret" ]; then
-  echo 'Could not read secret from /etc/dhcp/ddns-keys/nsupdate.key' >&2
+  logmsg -p user.err \
+         'could not read secret from /etc/dhcp/ddns-keys/nsupdate.key'
   exit 1
 fi
 
-printf %s "$key_secret" \
-  | curl -X POST                                   \
-         --cacert /etc/puavo/certs/rootca.pem      \
-         --header      'Authorization: Bootserver' \
-         --form        'key_secret=<-'             \
-         --form-string "key_name=${key_name}"      \
-         --form-string "type=${type}"              \
-         --form-string "client_mac=${client_mac}"  \
-         --form-string "client_ip=${client_ip}"    \
-         --form-string "subdomain=${subdomain}"    \
-         "${api_server}/v3/bootserver_dns_update"
+if ! curl_output=$(
+       printf %s "$key_secret" \
+         | curl -X POST                                   \
+                --cacert /etc/puavo/certs/rootca.pem      \
+                --fail                                    \
+                --header      'Authorization: Bootserver' \
+                --form        'key_secret=<-'             \
+                --form-string "key_name=${key_name}"      \
+                --form-string "type=${type}"              \
+                --form-string "client_mac=${client_mac}"  \
+                --form-string "client_ip=${client_ip}"    \
+                --form-string "subdomain=${subdomain}"    \
+                --silent                                  \
+                "$url"); then
+  errmsg="error when updating DNS for ${client_mac}/${client_ip},"
+  errmsg="$errmsg see puavo-rest log"
+  logmsg -p user.err "$errmsg"
+  exit 1
+fi
+
+logmsg -p user.info \
+       "updated DNS for ${client_mac}/${client_ip}: ${curl_output}"
+
+exit 0
