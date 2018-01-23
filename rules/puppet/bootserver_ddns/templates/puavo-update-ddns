@@ -60,7 +60,10 @@ subdomain=$4
 api_server=${5:-}
 
 if [ -z "$api_server" ]; then
-  api_server=$(puavo-resolve-api-server 2>/dev/null || true)
+  if ! api_server=$(puavo-resolve-api-server); then
+    logmsg -p user.err 'error running puavo-resolve-api-server'
+    exit 1
+  fi
 fi
 
 nsupdate_keyfile_path='/etc/dhcp/ddns-keys/nsupdate.key'
