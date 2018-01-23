@@ -1,1 +1,4 @@
+# XXX This is only here for the case that "puavo-init-bootserver-ddns"
+# XXX is run and /usr/sbin/puavo-update-ddns is in use.
+# XXX Once that is no longer possible this can be removed.
 dhcpd ALL=(ALL) NOPASSWD: /bin/cat /etc/puavo/ldap/password
