@@ -25,13 +25,17 @@ class bootserver_dummywlan {
       target  => '/lib/init/upstart-job',
       require => File['/etc/init/dummywlan.conf'];
 
-    '/etc/init/isc-dhcp-server.override':
-      content => template('bootserver_dummywlan/isc-dhcp-server.upstart.override'),
-      mode    => 0644;
-
     '/usr/local/lib/dummywlan':
       content => template('bootserver_dummywlan/dummywlan'),
       mode    => 0755;
+  }
+
+  if $puavo_dhcpd_manual_override != 'true' {
+    file {
+      '/etc/init/isc-dhcp-server.override':
+        content => template('bootserver_dummywlan/isc-dhcp-server.upstart.override'),
+        mode    => 0644;
+    }
   }
 
   service {
