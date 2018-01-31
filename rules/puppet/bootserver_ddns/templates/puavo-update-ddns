@@ -101,6 +101,7 @@ if ! curl_output=$(
                 --form-string "client_mac=${client_mac}"  \
                 --form-string "client_ip=${client_ip}"    \
                 --form-string "subdomain=${subdomain}"    \
+                --max-time    30                          \
                 --silent                                  \
                 "$url"); then
   errmsg="error when updating DNS for ${client_mac}/${client_ip},"
