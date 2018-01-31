@@ -168,22 +168,13 @@ class bootserver_ddns {
       enable => true,
       ensure => 'running',
       require => Service['bind9'];
-  }
 
-  if $puavo_dhcpd_manual_override != 'true' {
-    service {
-      'isc-dhcp-server':
-        enable => true,
-        ensure => 'running',
-        require => [ Bootserver_ddns::Scriptfile['puavo-update-ddns']
-                   , File['/etc/sudoers.d/puavo-bootserver']
-                   , Service['bind9']
-                   , Service['dnsmasq'] ];
-    }
-  } else {
-    service {
-      'isc-dhcp-server':
-        enable => false;
-    }
+    'isc-dhcp-server':
+      enable => true,
+      ensure => 'running',
+      require => [ Bootserver_ddns::Scriptfile['puavo-update-ddns']
+                 , File['/etc/sudoers.d/puavo-bootserver']
+                 , Service['bind9']
+                 , Service['dnsmasq'] ];
   }
 }
