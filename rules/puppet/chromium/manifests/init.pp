@@ -1,6 +1,5 @@
 class chromium {
-  include chromium::office365_tweaks,
-          dpkg,
+  include dpkg,
           packages
 
   define install_policy () {

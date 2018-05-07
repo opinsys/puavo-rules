@@ -1,4 +1,6 @@
 class chromium::office365_tweaks {
+  # XXX NOT CURRENTLY USED, MAY BE REMOVED?
+
   include chromium
 
   # Microsoft Office 365 is broken with Chrome/Chromium when the default
