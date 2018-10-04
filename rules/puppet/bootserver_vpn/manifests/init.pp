@@ -6,7 +6,6 @@ class bootserver_vpn {
       ensure  => absent,
       notify  => Exec['altvpn1'];
 
-  file {
     '/etc/openvpn/puavo.conf':
       content => template('bootserver_vpn/puavo.conf'),
       notify  => Service['openvpn'];
