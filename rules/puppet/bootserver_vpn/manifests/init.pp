@@ -2,10 +2,6 @@ class bootserver_vpn {
   include bootserver_config
 
   file {
-    '/etc/openvpn/altvpn1.conf':
-      content => template('bootserver_vpn/altvpn1.conf'),
-      notify  => Service['openvpn'];
-
     '/etc/openvpn/puavo.conf':
       content => template('bootserver_vpn/puavo.conf'),
       notify  => Service['openvpn'];
